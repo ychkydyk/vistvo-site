@@ -1,0 +1,353 @@
+<meta charset="utf-8">
+<title>Бриф VISTVO — на проработку стратегии</title>
+<style>
+  :root{
+    --bg:#F3F4EF; --surface:#FFFFFF; --surface-2:#F1F2EC; --surface-3:#E9ECE1;
+    --border:#DEE1D6; --border-2:#EAECE3;
+    --text:#22261D; --muted:#5B6353; --faint:#8A8F80;
+    --accent:#5E6E3F; --accent-2:#7E9455; --accent-soft:rgba(126,148,85,.14);
+    --good:#3E8E5E; --good-bg:rgba(62,142,94,.12);
+    --shadow:0 1px 2px rgba(34,38,29,.05),0 10px 30px rgba(34,38,29,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#14160F; --surface:#1B1E15; --surface-2:#22261B; --surface-3:#282D20;
+    --border:#333928; --border-2:#2A2F22;
+    --text:#ECEDE3; --muted:#9AA089; --faint:#6C7360;
+    --accent:#A8BE7C; --accent-2:#8FA863; --accent-soft:rgba(168,190,124,.14);
+    --good:#79C79A; --good-bg:rgba(121,199,154,.14);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,"Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;}
+  .wrap{max-width:800px;margin:0 auto;padding:0 20px;}
+  a{color:var(--accent);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px;}
+
+  header{padding:44px 0 22px;text-align:center;position:relative;}
+  .mark{font-family:ui-monospace,Consolas,monospace;font-weight:700;letter-spacing:.36em;
+    text-transform:lowercase;font-size:1.5rem;color:var(--accent);}
+  .mark .cam{display:inline-block;transform:translateY(2px);margin-right:.1em;}
+  .sub{color:var(--muted);font-size:.9rem;margin-top:8px;letter-spacing:.02em;}
+  h1{font-size:clamp(1.6rem,4vw,2.3rem);letter-spacing:-.02em;text-align:center;margin:26px 0 10px;text-wrap:balance;}
+  .intro{color:var(--muted);text-align:center;max-width:60ch;margin:0 auto 8px;}
+  .meta-line{text-align:center;color:var(--faint);font-size:.82rem;margin-bottom:26px;}
+
+  .known{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:26px;}
+  .known h2{margin:0 0 4px;font-size:1.05rem;}
+  .known .k-hint{color:var(--muted);font-size:.85rem;margin-bottom:14px;}
+  .known ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;}
+  @media(max-width:620px){.known ul{grid-template-columns:1fr}}
+  .known li{font-size:.9rem;padding-left:22px;position:relative;}
+  .known li::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700;}
+  .known li b{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);font-weight:600;}
+
+  .progress{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);
+    backdrop-filter:blur(8px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--border);}
+  .progress .bar{height:7px;background:var(--surface-3);border-radius:100px;overflow:hidden;}
+  .progress .fill{height:100%;width:0;background:var(--accent-2);border-radius:100px;transition:width .25s;}
+  .progress .lbl{font-size:.78rem;color:var(--muted);margin-top:6px;font-family:ui-monospace,Consolas,monospace;}
+
+  section.sec{margin:30px 0;}
+  .sec-h{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:0 0 4px;color:var(--accent);}
+  .sec-line{height:1px;background:var(--border);margin:12px 0 20px;}
+
+  .q{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 18px 16px;margin-bottom:14px;}
+  .q .qt{font-weight:600;margin-bottom:12px;}
+  .q .qt .req{color:var(--accent);font-size:.72rem;vertical-align:super;margin-left:4px;text-transform:uppercase;letter-spacing:.05em;}
+  .opts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+  .opt{position:relative;}
+  .opt input{position:absolute;opacity:0;width:0;height:0;}
+  .opt label{display:inline-block;cursor:pointer;border:1px solid var(--border);background:var(--surface-2);
+    border-radius:100px;padding:8px 15px;font-size:.88rem;color:var(--text);transition:all .12s;user-select:none;}
+  .opt label:hover{border-color:var(--accent-2);}
+  .opt input:checked + label{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600;}
+  .opt input:focus-visible + label{outline:2px solid var(--accent);outline-offset:2px;}
+  .free{width:100%;background:var(--surface-2);border:1px solid var(--border);color:var(--text);
+    border-radius:9px;padding:10px 12px;font-size:.9rem;font-family:inherit;resize:vertical;}
+  .free::placeholder{color:var(--faint);}
+  textarea.free{min-height:64px;}
+  input.free{min-height:0;}
+  .free-lbl{font-size:.76rem;color:var(--faint);margin-bottom:5px;display:block;}
+
+  .submit-wrap{text-align:center;margin:36px 0 60px;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:1.02rem;
+    background:var(--accent);color:#fff;border-radius:100px;padding:15px 34px;box-shadow:var(--shadow);transition:transform .1s,background .15s;}
+  :root[data-theme="dark"] .btn{color:#14160F;}
+  .btn:hover{background:var(--accent-2);}
+  .btn:active{transform:translateY(1px);}
+  .btn.ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border);box-shadow:none;font-size:.9rem;padding:11px 20px;}
+  .submit-note{color:var(--faint);font-size:.82rem;margin-top:12px;}
+
+  .result{display:none;background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:24px;margin:28px 0 60px;box-shadow:var(--shadow);}
+  .result.show{display:block;}
+  .result h2{margin:0 0 6px;}
+  .result .ok{color:var(--good);font-weight:600;}
+  .result pre{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:16px;
+    max-height:340px;overflow:auto;font-family:ui-monospace,Consolas,monospace;font-size:.8rem;white-space:pre-wrap;word-break:break-word;margin:14px 0;}
+  .result .row{display:flex;gap:10px;flex-wrap:wrap;}
+  .tbtn{position:absolute;top:16px;right:16px;background:var(--surface-2);border:1px solid var(--border);
+    color:var(--muted);width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:15px;}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);opacity:0;
+    background:var(--accent);color:#fff;padding:10px 18px;border-radius:100px;font-size:.88rem;transition:all .25s;pointer-events:none;z-index:99;}
+  :root[data-theme="dark"] .toast{color:#14160F;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  footer{text-align:center;color:var(--faint);font-size:.8rem;padding-bottom:40px;}
+  .mark{display:inline-flex;align-items:center;gap:10px;justify-content:center;}
+  .logo-mark{width:36px;height:30px;color:var(--accent);flex:none;}
+</style>
+
+<button class="tbtn" id="themeBtn" title="Тема" aria-label="Сменить тему">◐</button>
+
+<div class="wrap">
+  <header>
+    <div class="mark"><svg class="logo-mark" viewBox="0 0 120 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VISTVO"><path d="M60 24 C 52 12, 30 12, 30 24 C 30 36, 52 36, 60 24 C 68 12, 90 12, 90 24 C 90 36, 68 36, 60 24 Z" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><path d="M60 36 V40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><rect x="40" y="40" width="60" height="46" rx="7" stroke="currentColor" stroke-width="3.4"/><path d="M40 54 L18 64 L40 74" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/></svg>vistvo</div>
+    <div class="sub">ВидеоСоТворение · мультикам + видеоарт</div>
+    <h1>Бриф на проработку стратегии</h1>
+    <p class="intro">Заполни, что откликается — выбери варианты и/или напиши своими словами. Это займёт ~10–15 минут и напрямую превратится в цены, тексты сайта и план запуска.</p>
+    <p class="meta-line">Отвечать можно выборочно · поля со звёздочкой* — самые важные для старта мультикам</p>
+  </header>
+
+  <div class="known">
+    <h2>Уже зафиксировано ✓</h2>
+    <p class="k-hint">Это мы уже знаем из наших договорённостей — переспрашивать не будем. Если что-то поменялось, поправь в поле ниже.</p>
+    <ul id="knownList"></ul>
+    <label class="free-lbl" style="margin-top:14px">Поправить/добавить к зафиксированному</label>
+    <textarea class="free" id="known_fix" placeholder="Если что-то из списка выше устарело или требует уточнения — напиши здесь"></textarea>
+  </div>
+
+  <div class="progress">
+    <div class="bar"><div class="fill" id="pfill"></div></div>
+    <div class="lbl" id="plbl">Отвечено 0 из 0</div>
+  </div>
+
+  <form id="briefForm"></form>
+
+  <div class="submit-wrap">
+    <button class="btn" id="submitBtn" type="button">Отправить бриф на проработку →</button>
+    <p class="submit-note">По кнопке бриф соберётся в готовый текст: можно скопировать, скачать и переслать нам / в бот.</p>
+  </div>
+
+  <div class="result" id="result">
+    <h2><span class="ok">✓ Бриф собран.</span> Отправь его нам на проработку</h2>
+    <p class="k-hint" id="resultStatus">Скопируй или скачай текст ниже и пришли нам (или в бот). Как только автоотправка будет подключена — кнопка отправит бриф сама.</p>
+    <pre id="resultText"></pre>
+    <div class="row">
+      <button class="btn ghost" id="copyBtn" type="button">⧉ Скопировать</button>
+      <button class="btn ghost" id="dlBtn" type="button">↓ Скачать .md</button>
+      <a class="btn ghost" id="mailBtn" href="#">✉ Отправить письмом</a>
+    </div>
+  </div>
+
+  <footer>VISTVO · бриф-опросник · данные остаются у тебя в браузере, пока не нажмёшь «Отправить»</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  // default light (сайт светлый)
+  if(!document.documentElement.getAttribute('data-theme')){document.documentElement.setAttribute('data-theme','light');}
+
+  // === КОНФИГ автоотправки (заполнить при деплое на хостинг) ===
+  // endpoint: URL формы (Formspree и т.п.) ИЛИ оставить пустым -> копия/скачивание/письмо
+  var CONFIG = { endpoint:'', email:'' };
+
+  var KNOWN = [
+    ['Направления','Оба: мультикам (доход) + видеоарт vistvo (цель)'],
+    ['Регионы','Мультикам — РФ (СПб/Москва + регионы) · видеоарт — мир'],
+    ['Ценовой сегмент','Средний+'],
+    ['Модель мультикам','Турнкей (съёмка+монтаж) + аренда смены — параллельно'],
+    ['Ресурсы','8+ камер, кастомная кинооптика, команда (оператор, звук, свет) + аутсорс'],
+    ['Сайт','Мультистраничный, 2 направления'],
+    ['Материал','Снятого много, почти не публикуется · соцсетей нет'],
+    ['Приоритет','Сначала мультикам на поток, затем видеоарт в мир'],
+  ];
+
+  var SECTIONS = [
+    {t:'1 · Видение и цель', qs:[
+      {id:'v_goal1y', q:'Каким видишь vistvo через 1 год?', type:'radio', opts:['Стабильный доход с мультикам','Портфолио и узнаваемость','Первые арт-показы','Свой ритм без гонки']},
+      {id:'v_goal3y', q:'Через 3 года — куда хочешь прийти?', type:'text'},
+      {id:'v_meaning', q:'Что для тебя главный смысл проекта?', type:'checkbox', opts:['Деньги/стабильность','Искусство/самовыражение','Имя/признание','Свобода/независимость']},
+      {id:'v_role', q:'Мультикам для тебя —', type:'radio', opts:['Средство (заработок ради арта)','Самостоятельная ценность','И то, и другое']},
+    ]},
+    {t:'2 · Стиль и почерк', qs:[
+      {id:'s_refs', q:'3–5 референсов (артисты/работы/студии), на кого равняешься', type:'text'},
+      {id:'s_sign', q:'Что делает картинку «твоей»?', type:'checkbox', opts:['Макро/боке, кончики пальцев','Работа со светом','Движение камеры','Цвет/грейдинг','Переходы в абстракцию']},
+      {id:'s_no', q:'Что для тебя неприемлемо в картинке?', type:'text'},
+    ]},
+    {t:'3 · Техника (уточнения)', qs:[
+      {id:'t_cam', q:'Точные модели камер и кастомной оптики*', type:'text'},
+      {id:'t_max', q:'Максимум камер на концерт', type:'radio', opts:['2–3','4–6','6–8','8+']},
+      {id:'t_edit', q:'Кто монтирует и на чём', type:'text'},
+    ]},
+    {t:'4 · Мультикам: материал и продукт', qs:[
+      {id:'m_genre', q:'Какие жанры/сцены снимал?*', type:'checkbox', opts:['Рок','Электроника','Классика/академ','Рэп/хип-хоп','Джаз','Поп/эстрада','Инди','Театр']},
+      {id:'m_best', q:'3–5 лучших съёмок из архива (можно ссылки)*', type:'text'},
+      {id:'m_dl', q:'Реальный срок сдачи монтажа сейчас', type:'radio', opts:['24–48 ч','3–5 дней','1–2 недели','Дольше']},
+      {id:'m_vert', q:'Делаешь вертикали/клипы под соцсети?', type:'radio', opts:['Да, регулярно','Иногда','Нет — только полное']},
+      {id:'m_pub', q:'Что из архива можно публиковать без ограничений?', type:'text'},
+    ]},
+    {t:'5 · Деньги и цели', qs:[
+      {id:'d_inc', q:'Целевой доход в месяц (мультикам)*', type:'radio', opts:['до 150к ₽','150–300к ₽','300–500к ₽','500к+ ₽']},
+      {id:'d_sh', q:'Сколько смен/мес комфортно тянуть*', type:'radio', opts:['2–4','5–8','9–12','12+']},
+      {id:'d_pr', q:'Твои текущие цены (смена / концерт под ключ), если есть', type:'text'},
+      {id:'d_bud', q:'Бюджет на старт (сайт/реклама/техника)', type:'radio', opts:['Нет / 0','до 50к ₽','50–150к ₽','150к+ ₽']},
+    ]},
+    {t:'6 · Клиенты и связи', qs:[
+      {id:'c_cont', q:'Есть тёплые контакты (площадки/промоутеры/артисты)?*', type:'radio', opts:['Да, много','Несколько','Почти нет']},
+      {id:'c_who', q:'Если есть — кто именно (площадки/люди)', type:'text'},
+      {id:'c_free', q:'Готов снять 1 сильный клип бесплатно/за бартер ради входа?', type:'radio', opts:['Да','Только за бартер','Нет']},
+      {id:'c_reg', q:'Выезды в регионы РФ?', type:'radio', opts:['Да, готов','Только СПб/Москва','По ситуации']},
+    ]},
+    {t:'7 · Бренд и имя', qs:[
+      {id:'b_name', q:'vistvo — это имя…*', type:'radio', opts:['Всего проекта','Только арт-направления','Мультикам — отдельный суб-бренд']},
+      {id:'b_acc', q:'Домен, соцсети-аккаунты, желаемые ники', type:'text'},
+      {id:'b_tone', q:'Тон бренда', type:'radio', opts:['Строгий-премиум','Тёплый-авторский','Дерзкий-молодёжный']},
+    ]},
+    {t:'8 · Видеоарт', qs:[
+      {id:'a_have', q:'Есть ли уже арт-работы/показы?', type:'radio', opts:['Да, есть','Нет, с нуля']},
+      {id:'a_fmt', q:'Приоритетные арт-форматы', type:'checkbox', opts:['Театр/перформанс','Инсталляции','Single-channel видео','Коллаборации','Проекции/иммерсив']},
+      {id:'a_grant', q:'Гранты/резиденции/поездки', type:'radio', opts:['Да, готов','Возможно','Пока нет']},
+      {id:'a_lang', q:'Языки для арт-мира', type:'radio', opts:['Только RU','RU + EN']},
+    ]},
+    {t:'9 · Контент и публичность', qs:[
+      {id:'p_pub', q:'Готов показывать лицо/имя, быть на камеру?', type:'radio', opts:['Да, полностью','Частично','Анонимно / только работы']},
+      {id:'p_time', q:'Сколько времени в неделю на продвижение?', type:'radio', opts:['<2 ч','2–5 ч','5–10 ч','Готов делегировать']},
+      {id:'p_smm', q:'Кто ведёт соцсети?', type:'radio', opts:['Я сам','Вы/команда','Отдельный человек','Нужно нанять']},
+    ]},
+    {t:'10 · Приоритеты и ограничения', qs:[
+      {id:'x_no', q:'Что НЕ хочешь делать?', type:'checkbox', opts:['Свадьбы','Корпоративы','Дешёвый поток/демпинг','Ничего не исключаю']},
+      {id:'x_more', q:'Что ещё важное я не спросил? Любые мысли.', type:'text'},
+    ]},
+  ];
+
+  var $=function(s,r){return (r||document).querySelector(s);};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  // known list
+  var kl=$('#knownList');
+  KNOWN.forEach(function(k){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(k[0])+'</b>'+esc(k[1]); kl.appendChild(li); });
+
+  // render form
+  var form=$('#briefForm'), total=0;
+  SECTIONS.forEach(function(sec){
+    var s=document.createElement('section'); s.className='sec';
+    s.innerHTML='<h3 class="sec-h">'+esc(sec.t)+'</h3><div class="sec-line"></div>';
+    sec.qs.forEach(function(q){
+      total++;
+      var star = /\*$/.test(q.q);
+      var qt = star ? q.q.replace(/\*$/,'') : q.q;
+      var box=document.createElement('div'); box.className='q'; box.dataset.qid=q.id;
+      var h='<div class="qt">'+esc(qt)+(star?'<span class="req">важно</span>':'')+'</div>';
+      if(q.opts){
+        h+='<div class="opts">';
+        q.opts.forEach(function(o,i){
+          var inp = q.type==='checkbox'?'checkbox':'radio';
+          var nm = q.id;
+          var id = q.id+'__'+i;
+          h+='<span class="opt"><input type="'+inp+'" name="'+nm+'" id="'+id+'" value="'+esc(o)+'"><label for="'+id+'">'+esc(o)+'</label></span>';
+        });
+        h+='</div>';
+        h+='<label class="free-lbl">Свой вариант / комментарий</label><input class="free q-free" data-for="'+q.id+'" type="text" placeholder="необязательно">';
+      } else {
+        h+='<textarea class="free q-free" data-for="'+q.id+'" placeholder="напиши своими словами"></textarea>';
+      }
+      box.innerHTML=h;
+      s.appendChild(box);
+    });
+    form.appendChild(s);
+  });
+
+  // progress
+  var pfill=$('#pfill'), plbl=$('#plbl');
+  function answered(){
+    var n=0;
+    SECTIONS.forEach(function(sec){sec.qs.forEach(function(q){
+      var has=false;
+      if(q.opts){ if(document.querySelector('input[name="'+q.id+'"]:checked')) has=true; }
+      var fr=document.querySelector('.q-free[data-for="'+q.id+'"]'); if(fr && fr.value.trim()) has=true;
+      if(has) n++;
+    });});
+    return n;
+  }
+  function updProgress(){ var n=answered(); pfill.style.width=Math.round(n/total*100)+'%'; plbl.textContent='Отвечено '+n+' из '+total; }
+  form.addEventListener('input',updProgress);
+  form.addEventListener('change',updProgress);
+  updProgress();
+
+  // compile
+  function compile(){
+    var d=new Date(); var pad=function(x){return (x<10?'0':'')+x;};
+    var stamp=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+' '+pad(d.getHours())+':'+pad(d.getMinutes());
+    var L=[];
+    L.push('# Бриф VISTVO — заполнено артистом');
+    L.push('_Собрано: '+stamp+' · отвечено '+answered()+' из '+total+'_');
+    L.push('');
+    L.push('## Уже зафиксировано');
+    KNOWN.forEach(function(k){ L.push('- **'+k[0]+':** '+k[1]); });
+    var kf=$('#known_fix').value.trim(); if(kf){ L.push(''); L.push('**Поправки к зафиксированному:** '+kf); }
+    L.push('');
+    SECTIONS.forEach(function(sec){
+      L.push('## '+sec.t);
+      sec.qs.forEach(function(q){
+        var qt=q.q.replace(/\*$/,'');
+        var ans=[];
+        if(q.opts){
+          var sel=document.querySelectorAll('input[name="'+q.id+'"]:checked');
+          Array.prototype.forEach.call(sel,function(x){ans.push(x.value);});
+        }
+        var fr=document.querySelector('.q-free[data-for="'+q.id+'"]');
+        var free=fr?fr.value.trim():'';
+        var line='- **'+qt+':** ';
+        if(ans.length) line+=ans.join(', ');
+        if(free) line+=(ans.length?' — ':'')+free;
+        if(!ans.length && !free) line+='_—_';
+        L.push(line);
+      });
+      L.push('');
+    });
+    return L.join('\n');
+  }
+
+  // submit
+  var result=$('#result'), toast=$('#toast');
+  function showToast(m){ toast.textContent=m; toast.classList.add('show'); setTimeout(function(){toast.classList.remove('show');},1800); }
+  function download(text){
+    var blob=new Blob([text],{type:'text/markdown;charset=utf-8'});
+    var url=URL.createObjectURL(blob); var a=document.createElement('a');
+    a.href=url; a.download='brief_vistvo.md'; document.body.appendChild(a); a.click();
+    setTimeout(function(){document.body.removeChild(a); URL.revokeObjectURL(url);},100);
+  }
+  var lastText='';
+  $('#submitBtn').addEventListener('click',function(){
+    lastText=compile();
+    $('#resultText').textContent=lastText;
+    $('#mailBtn').href='mailto:'+(CONFIG.email||'')+'?subject='+encodeURIComponent('Бриф VISTVO')+'&body='+encodeURIComponent(lastText);
+    result.classList.add('show');
+    result.scrollIntoView({behavior:'smooth',block:'start'});
+    // авто-отправка, если задан endpoint (работает на хостинге, не в песочнице артефакта)
+    if(CONFIG.endpoint){
+      try{
+        fetch(CONFIG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({brief:lastText})})
+          .then(function(r){ $('#resultStatus').innerHTML = r.ok ? '<span class="ok">✓ Бриф отправлен на проработку автоматически.</span> Копия — ниже.' : 'Автоотправка не прошла — скопируй/скачай и пришли вручную.'; })
+          .catch(function(){ $('#resultStatus').textContent='Автоотправка недоступна здесь — скопируй/скачай и пришли вручную.'; });
+      }catch(e){}
+    }
+  });
+  $('#copyBtn').addEventListener('click',function(){
+    if(navigator.clipboard){ navigator.clipboard.writeText(lastText).then(function(){showToast('Скопировано ✓');}); }
+    else { var t=$('#resultText'); var r=document.createRange(); r.selectNode(t); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand('copy'); showToast('Скопировано ✓'); }
+  });
+  $('#dlBtn').addEventListener('click',function(){ download(lastText); showToast('Скачано ✓'); });
+
+  // theme toggle
+  $('#themeBtn').addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme');
+    document.documentElement.setAttribute('data-theme', cur==='dark'?'light':'dark');
+  });
+})();
+</script>

@@ -2,335 +2,334 @@
 <title>VISTVO — панель проекта</title>
 <style>
   :root{
-    /* LIGHT — «дневной экран проекции» */
-    --bg:#E9EAEC; --surface:#FFFFFF; --surface-2:#F3F3F1; --surface-3:#ECEDEB;
-    --border:#D9DAD6; --border-2:#E6E6E3;
-    --text:#191A1E; --muted:#5C606B; --faint:#8A8E98;
-    --accent:#A6701E; --accent-bar:#E0A23C; --accent-soft:rgba(224,162,60,.16);
-    --good:#2E8B63; --warn:#9A7B15; --bad:#B4463D;
-    --good-bg:rgba(46,139,99,.12); --warn-bg:rgba(154,123,21,.12); --bad-bg:rgba(180,70,61,.12);
-    --shadow:0 1px 2px rgba(20,22,28,.06),0 8px 24px rgba(20,22,28,.05);
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0F1116; --surface:#161922; --surface-2:#1C202A; --surface-3:#20242F;
-      --border:#2A2E39; --border-2:#232732;
-      --text:#ECEAE3; --muted:#969CA9; --faint:#6E7481;
-      --accent:#E7A63F; --accent-bar:#E7A63F; --accent-soft:rgba(231,166,63,.14);
-      --good:#5CBE8A; --warn:#CDB45E; --bad:#D9736A;
-      --good-bg:rgba(92,190,138,.14); --warn-bg:rgba(205,180,94,.14); --bad-bg:rgba(217,115,106,.14);
-      --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#0F1116; --surface:#161922; --surface-2:#1C202A; --surface-3:#20242F;
-    --border:#2A2E39; --border-2:#232732;
-    --text:#ECEAE3; --muted:#969CA9; --faint:#6E7481;
-    --accent:#E7A63F; --accent-bar:#E7A63F; --accent-soft:rgba(231,166,63,.14);
-    --good:#5CBE8A; --warn:#CDB45E; --bad:#D9736A;
-    --good-bg:rgba(92,190,138,.14); --warn-bg:rgba(205,180,94,.14); --bad-bg:rgba(217,115,106,.14);
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);
+    --bg:#0B0C10; --bg-2:#0E1015; --panel:#14161D; --panel-2:#191C24;
+    --glass:rgba(255,255,255,.045); --glass-2:rgba(255,255,255,.028);
+    --border:rgba(255,255,255,.09); --border-2:rgba(255,255,255,.055); --hair:rgba(255,255,255,.14);
+    --text:#F3F1EA; --muted:#A2A6B0; --faint:#6B6F7B;
+    --accent:#EBB24E; --accent-2:#F4CB77; --accent-deep:#B87A2B; --accent-soft:rgba(235,178,78,.13);
+    --sage:#A6C06E; --sage-soft:rgba(166,192,110,.14);
+    --good:#67C88C; --warn:#D8B85A; --bad:#E0776C;
+    --good-bg:rgba(103,200,140,.14); --warn-bg:rgba(216,184,90,.14); --bad-bg:rgba(224,119,108,.14);
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 20px 50px -24px rgba(0,0,0,.7);
+    --radius:18px;
   }
   :root[data-theme="light"]{
-    --bg:#E9EAEC; --surface:#FFFFFF; --surface-2:#F3F3F1; --surface-3:#ECEDEB;
-    --border:#D9DAD6; --border-2:#E6E6E3;
-    --text:#191A1E; --muted:#5C606B; --faint:#8A8E98;
-    --accent:#A6701E; --accent-bar:#E0A23C; --accent-soft:rgba(224,162,60,.16);
-    --good:#2E8B63; --warn:#9A7B15; --bad:#B4463D;
-    --good-bg:rgba(46,139,99,.12); --warn-bg:rgba(154,123,21,.12); --bad-bg:rgba(180,70,61,.12);
-    --shadow:0 1px 2px rgba(20,22,28,.06),0 8px 24px rgba(20,22,28,.05);
+    --bg:#EDEEE9; --bg-2:#F3F3EE; --panel:#FFFFFF; --panel-2:#F6F6F1;
+    --glass:rgba(255,255,255,.7); --glass-2:rgba(255,255,255,.5);
+    --border:rgba(20,22,28,.1); --border-2:rgba(20,22,28,.06); --hair:rgba(20,22,28,.16);
+    --text:#1B1D22; --muted:#5A5F6A; --faint:#8B8F98;
+    --accent:#9A6B1E; --accent-2:#B8862F; --accent-deep:#7C540F; --accent-soft:rgba(184,134,47,.15);
+    --sage:#5F7A34; --sage-soft:rgba(95,122,52,.13);
+    --good:#2C8A5C; --warn:#8C7016; --bad:#B24A3F;
+    --good-bg:rgba(44,138,92,.12); --warn-bg:rgba(140,112,22,.12); --bad-bg:rgba(178,74,63,.12);
+    --shadow:0 1px 2px rgba(20,22,28,.05), 0 18px 40px -26px rgba(20,22,28,.35);
   }
-
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
   body{
-    margin:0;background:var(--bg);color:var(--text);
+    margin:0;color:var(--text);background:var(--bg);
     font-family:-apple-system,"Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
-    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
-  .mono{font-family:ui-monospace,"Cascadia Mono","Cascadia Code",Consolas,"SF Mono",monospace;}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 22px;}
-  a{color:var(--accent);text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
-
-  /* Topbar */
-  .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
-  .topbar .row{display:flex;align-items:center;gap:18px;height:58px;}
-  .brand{font-family:ui-monospace,Consolas,monospace;font-weight:700;letter-spacing:.34em;
-    font-size:1.02rem;text-transform:uppercase;color:var(--text);white-space:nowrap;}
-  .brand b{color:var(--accent);font-weight:700;}
-  .tagline{color:var(--muted);font-size:.82rem;border-left:1px solid var(--border);padding-left:16px;}
-  .nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;}
-  .nav a{color:var(--muted);font-size:.82rem;padding:6px 10px;border-radius:6px;}
-  .nav a:hover{color:var(--text);background:var(--surface-2);text-decoration:none;}
-  .tbtn{background:var(--surface-2);border:1px solid var(--border);color:var(--muted);
-    width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:15px;line-height:1;}
-  .tbtn:hover{color:var(--text);border-color:var(--accent);}
-  @media(max-width:820px){ .tagline,.nav{display:none} }
-
-  /* Hero */
-  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
-  .hero::before{content:"";position:absolute;inset:-40px;pointer-events:none;z-index:0;
+  /* ambient stage glows */
+  .bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;
     background:
-      radial-gradient(circle at 12% 34%, var(--accent-soft), transparent 9%),
-      radial-gradient(circle at 82% 22%, var(--accent-soft), transparent 7%),
-      radial-gradient(circle at 68% 74%, var(--accent-soft), transparent 11%),
-      radial-gradient(circle at 34% 82%, rgba(120,150,190,.10), transparent 8%),
-      radial-gradient(circle at 92% 60%, rgba(120,150,190,.08), transparent 6%);
-    filter:blur(7px);opacity:.9;}
-  .hero .inner{position:relative;z-index:1;padding:56px 0 42px;}
-  .eyebrow{font-family:ui-monospace,Consolas,monospace;text-transform:uppercase;letter-spacing:.2em;
-    font-size:.72rem;color:var(--accent);margin:0 0 14px;}
-  h1{font-size:clamp(2.1rem,5.2vw,3.5rem);line-height:1.04;letter-spacing:-.02em;font-weight:800;
-    margin:0 0 16px;text-wrap:balance;max-width:15ch;}
-  .lede{font-size:clamp(1rem,1.6vw,1.18rem);color:var(--muted);max-width:60ch;margin:0 0 26px;}
-  .lede b{color:var(--text);font-weight:600;}
-  .statuschips{display:flex;gap:8px;flex-wrap:wrap;}
-  .chip{font-size:.76rem;padding:5px 11px;border-radius:100px;border:1px solid var(--border);
-    background:var(--surface);color:var(--muted);white-space:nowrap;}
-  .chip b{color:var(--text);font-weight:600;}
-  .chip.on{border-color:var(--accent);color:var(--text);background:var(--accent-soft);}
+      radial-gradient(60vw 40vw at 78% -6%, var(--accent-soft), transparent 60%),
+      radial-gradient(46vw 34vw at 8% 8%, rgba(120,150,200,.07), transparent 60%),
+      radial-gradient(50vw 40vw at 50% 118%, var(--sage-soft), transparent 60%);}
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .app{position:relative;z-index:2}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .mono{font-family:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",monospace}
 
-  /* KPI grid */
-  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:14px;margin-top:34px;}
-  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 16px 14px;}
-  .kpi .k-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);margin-bottom:8px;}
-  .kpi .k-val{font-family:ui-monospace,Consolas,monospace;font-size:clamp(1.5rem,3.4vw,2.05rem);
-    font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;line-height:1;}
-  .kpi .k-sub{font-size:.78rem;color:var(--muted);margin-top:7px;}
-  .kpi .k-val.accent{color:var(--accent);}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1!important;transform:none!important}
+  }
 
-  /* Sections */
-  section.blk{padding:52px 0;border-bottom:1px solid var(--border-2);}
-  .s-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap;}
-  .s-num{font-family:ui-monospace,Consolas,monospace;color:var(--accent);font-size:.82rem;}
-  h2{font-size:clamp(1.5rem,3vw,2.05rem);font-weight:700;letter-spacing:-.01em;margin:0;text-wrap:balance;}
-  .s-desc{color:var(--muted);max-width:70ch;margin:6px 0 28px;}
+  /* header */
+  .topbar{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);
+    background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(16px) saturate(1.2)}
+  .topbar .row{display:flex;align-items:center;gap:20px;height:64px}
+  .brand{display:inline-flex;align-items:center;gap:11px;white-space:nowrap}
+  .logo-mark{width:32px;height:26px;color:var(--sage);flex:none}
+  .brand .wm{font-family:ui-monospace,Consolas,monospace;font-weight:700;letter-spacing:.32em;
+    text-transform:lowercase;font-size:1.06rem;color:var(--text)}
+  .tagline{color:var(--muted);font-size:.8rem;border-left:1px solid var(--border);padding-left:16px}
+  .nav{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap}
+  .nav a{color:var(--muted);font-size:.83rem;padding:7px 12px;border-radius:9px;transition:.15s}
+  .nav a:hover{color:var(--text);background:var(--glass);text-decoration:none}
+  .nav a.active{color:var(--accent)}
+  .tgl{width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:var(--glass);
+    color:var(--muted);cursor:pointer;font-size:15px;flex:none;transition:.15s}
+  .tgl:hover{color:var(--text);border-color:var(--hair)}
+  @media(max-width:860px){.tagline,.nav{display:none}}
 
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-  @media(max-width:800px){ .grid2,.grid3{grid-template-columns:1fr} }
+  /* hero */
+  .hero{padding:70px 0 40px;position:relative}
+  .eyebrow{font-family:ui-monospace,Consolas,monospace;text-transform:uppercase;letter-spacing:.24em;
+    font-size:.72rem;color:var(--accent);margin:0 0 18px;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);display:inline-block}
+  h1{font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.03em;font-weight:800;
+    margin:0 0 20px;text-wrap:balance;max-width:16ch}
+  h1 .g{background:linear-gradient(120deg,var(--accent-2),var(--accent) 45%,var(--sage));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lede{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--muted);max-width:62ch;margin:0 0 30px}
+  .lede b{color:var(--text);font-weight:600}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.98rem;cursor:pointer;
+    border-radius:100px;padding:14px 26px;border:1px solid transparent;transition:transform .12s,box-shadow .2s,background .2s;text-decoration:none}
+  .btn.primary{background:linear-gradient(120deg,var(--accent-2),var(--accent-deep));color:#1a1408;
+    box-shadow:0 10px 30px -10px var(--accent-soft),0 0 0 1px var(--accent-soft)}
+  .btn.primary:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 16px 40px -12px rgba(235,178,78,.4)}
+  .btn.ghost{background:var(--glass);border-color:var(--border);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--hair);text-decoration:none;transform:translateY(-2px)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+  .chip{font-size:.76rem;padding:6px 13px;border-radius:100px;border:1px solid var(--border);
+    background:var(--glass-2);color:var(--muted)}
+  .chip b{color:var(--text);font-weight:600}
+  .chip.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
 
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--shadow);}
-  .card h3{margin:0 0 8px;font-size:1.08rem;font-weight:700;}
-  .card.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent-soft),var(--shadow);}
-  .card .tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:2px 8px;margin-bottom:10px;}
-  .muted{color:var(--muted);}
-  ul.tight{margin:10px 0 0;padding-left:18px;} ul.tight li{margin:5px 0;}
-  ul.clean{list-style:none;margin:10px 0 0;padding:0;}
-  ul.clean li{padding-left:20px;position:relative;margin:7px 0;}
-  ul.clean li::before{content:"›";position:absolute;left:0;color:var(--accent);font-weight:700;}
+  /* bento */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:40px}
+  .tile{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:20px;
+    position:relative;overflow:hidden;box-shadow:var(--shadow);backdrop-filter:blur(6px)}
+  .tile::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,var(--hair),transparent)}
+  .tile.big{grid-column:span 2;grid-row:span 1}
+  .tile.wide{grid-column:span 2}
+  .t-label{font-size:.71rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);margin-bottom:10px}
+  .t-val{font-family:ui-monospace,Consolas,monospace;font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:600;
+    letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+  .t-val.acc{color:var(--accent)}
+  .t-sub{font-size:.79rem;color:var(--muted);margin-top:9px}
+  @media(max-width:900px){.bento{grid-template-columns:repeat(4,1fr)}.tile.big{grid-column:span 2}}
+  @media(max-width:560px){.bento{grid-template-columns:repeat(2,1fr)}.tile.big,.tile.wide{grid-column:span 2}}
 
-  /* Roadmap */
-  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
-  @media(max-width:900px){ .timeline{grid-template-columns:1fr 1fr} }
-  @media(max-width:560px){ .timeline{grid-template-columns:1fr} }
-  .ph{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;position:relative;}
-  .ph .p-n{font-family:ui-monospace,Consolas,monospace;font-size:.74rem;color:var(--accent);letter-spacing:.08em;}
-  .ph .p-t{font-weight:700;margin:6px 0 3px;font-size:1rem;}
-  .ph .p-when{font-size:.74rem;color:var(--faint);margin-bottom:9px;}
-  .ph ul{margin:0;padding-left:16px;font-size:.85rem;color:var(--muted);} .ph ul li{margin:4px 0;}
-  .ph.now{border-color:var(--accent);}
-  .ph.now .p-n::after{content:" ● сейчас";color:var(--accent);}
+  /* sections */
+  section.blk{padding:64px 0;position:relative}
+  .blk + .blk{border-top:1px solid var(--border-2)}
+  .s-head{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+  .s-num{font-family:ui-monospace,Consolas,monospace;color:var(--accent);font-size:.8rem;opacity:.8}
+  h2{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:750;letter-spacing:-.02em;margin:0;text-wrap:balance;font-weight:700}
+  .s-desc{color:var(--muted);max-width:72ch;margin:8px 0 32px}
+  .s-desc .mono{color:var(--text)}
 
-  /* Charts */
-  .charts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px;}
-  @media(max-width:820px){ .charts{grid-template-columns:1fr} }
-  .chart{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;}
-  .chart h4{margin:0 0 14px;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);font-weight:600;}
-  .bar-row{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:.85rem;}
-  .bar-row .bl{width:104px;color:var(--muted);flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .bar-track{flex:1;background:var(--surface-3);border-radius:100px;height:9px;overflow:hidden;}
-  .bar-fill{height:100%;background:var(--accent-bar);border-radius:100px;}
-  .bar-fill.g{background:var(--good);} .bar-fill.w{background:var(--warn);} .bar-fill.b{background:var(--bad);}
-  .bar-row .bv{width:34px;text-align:right;font-family:ui-monospace,Consolas,monospace;
-    font-variant-numeric:tabular-nums;color:var(--text);flex:none;}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
 
-  /* Filters + table */
-  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
-  .controls select,.controls input{background:var(--surface);border:1px solid var(--border);color:var(--text);
-    border-radius:8px;padding:8px 11px;font-size:.86rem;font-family:inherit;}
-  .controls input{min-width:190px;flex:1;}
-  .controls .count{margin-left:auto;color:var(--muted);font-size:.82rem;font-family:ui-monospace,Consolas,monospace;}
-  .tablewrap{max-height:640px;overflow:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface);}
-  table{border-collapse:collapse;width:100%;min-width:820px;font-size:.85rem;}
-  thead th{position:sticky;top:0;background:var(--surface-2);text-align:left;padding:11px 12px;
-    font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none;}
-  thead th:hover{color:var(--text);}
-  tbody td{padding:10px 12px;border-bottom:1px solid var(--border-2);vertical-align:top;}
-  tbody tr:hover{background:var(--surface-2);}
-  td.nm{font-weight:600;min-width:180px;}
-  td.dir,td.pr{color:var(--muted);}
-  td.pr{font-family:ui-monospace,Consolas,monospace;font-size:.8rem;white-space:nowrap;}
-  .pill{font-size:.7rem;padding:2px 8px;border-radius:100px;white-space:nowrap;text-transform:capitalize;}
-  .pill.studio{background:var(--surface-3);color:var(--muted);}
-  .pill.solo{background:var(--accent-soft);color:var(--accent);}
-  .pill.collective{background:var(--surface-3);color:var(--text);}
-  .cf{font-size:.7rem;padding:2px 8px;border-radius:100px;white-space:nowrap;}
-  .cf.verified{background:var(--good-bg);color:var(--good);}
-  .cf.likely{background:var(--warn-bg);color:var(--warn);}
-  .cf.unverified{background:var(--bad-bg);color:var(--bad);}
-  .ext{color:var(--accent);white-space:nowrap;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
 
-  /* Manifest */
-  .manifest{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:34px;position:relative;overflow:hidden;}
-  .manifest::after{content:"“";position:absolute;top:-30px;right:6px;font-size:11rem;line-height:1;
-    color:var(--accent-soft);font-family:Georgia,serif;pointer-events:none;}
-  .manifest .m-quote{font-size:clamp(1.05rem,2vw,1.32rem);line-height:1.55;max-width:60ch;font-weight:500;letter-spacing:-.01em;}
-  .manifest .m-quote em{color:var(--accent);font-style:normal;}
-  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:26px;}
-  .pillar{border-top:2px solid var(--accent);padding-top:10px;}
-  .pillar b{display:block;margin-bottom:3px;} .pillar span{font-size:.82rem;color:var(--muted);}
+  .card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:22px;
+    box-shadow:var(--shadow);transition:transform .18s,border-color .18s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-3px);border-color:var(--hair)}
+  .card h3{margin:0 0 8px;font-size:1.1rem;font-weight:700}
+  .card.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent-soft),var(--shadow)}
+  .card.feat::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--accent),var(--sage))}
+  .tag{display:inline-block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+    border:1px solid var(--accent);border-radius:6px;padding:2px 8px;margin-bottom:11px}
+  .muted{color:var(--muted)} .tx{color:var(--text)}
+  ul.tight{margin:10px 0 0;padding-left:18px} ul.tight li{margin:5px 0}
+  ul.clean{list-style:none;margin:10px 0 0;padding:0}
+  ul.clean li{padding-left:22px;position:relative;margin:8px 0}
+  ul.clean li::before{content:"›";position:absolute;left:0;color:var(--accent);font-weight:700}
 
-  /* Research */
-  .rt-row{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--border-2);}
-  .rt-row .pr-dot{flex:none;font-size:.7rem;padding:2px 8px;border-radius:100px;margin-top:2px;}
-  .pr-dot.now{background:var(--bad-bg);color:var(--bad);} .pr-dot.p12{background:var(--warn-bg);color:var(--warn);} .pr-dot.p34{background:var(--good-bg);color:var(--good);}
-  .rt-row .rt-t{font-weight:600;} .rt-row .rt-d{font-size:.84rem;color:var(--muted);}
+  /* timeline */
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  @media(max-width:900px){.timeline{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.timeline{grid-template-columns:1fr}}
+  .ph{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:transform .18s,border-color .18s}
+  .ph:hover{transform:translateY(-3px);border-color:var(--hair)}
+  .ph .p-n{font-family:ui-monospace,Consolas,monospace;font-size:.74rem;color:var(--accent);letter-spacing:.06em}
+  .ph .p-t{font-weight:700;margin:7px 0 3px;font-size:1.02rem}
+  .ph .p-when{font-size:.74rem;color:var(--faint);margin-bottom:10px}
+  .ph ul{margin:0;padding-left:16px;font-size:.85rem;color:var(--muted)} .ph ul li{margin:5px 0}
+  .ph.now{border-color:var(--accent);background:linear-gradient(180deg,var(--accent-soft),transparent 60%)}
+  .ph.now .p-n::after{content:" • сейчас";color:var(--accent)}
 
-  .files{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-  .file{font-family:ui-monospace,Consolas,monospace;font-size:.76rem;background:var(--surface-2);
-    border:1px solid var(--border);border-radius:7px;padding:5px 10px;color:var(--muted);}
-  footer{padding:40px 0 60px;color:var(--muted);font-size:.84rem;}
-  .note{background:var(--warn-bg);border:1px solid var(--warn);border-radius:10px;padding:12px 15px;font-size:.83rem;color:var(--text);margin-top:16px;}
-  .note b{color:var(--warn);}
-  .brand{display:inline-flex;align-items:center;gap:9px;}
-  .logo-mark{width:30px;height:24px;color:#8FA863;flex:none;}
-  @media(max-width:820px){.logo-mark{width:26px;height:21px}}
-  .hero-cta{margin:26px 0 2px;}
-  .hero-cta a{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#17140E;font-weight:700;padding:13px 24px;border-radius:100px;text-decoration:none;box-shadow:var(--shadow);}
-  .hero-cta a:hover{filter:brightness(1.06);text-decoration:none;}
+  /* charts */
+  .charts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+  @media(max-width:820px){.charts{grid-template-columns:1fr}}
+  .chart{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+  .chart h4{margin:0 0 16px;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);font-weight:600}
+  .bar-row{display:flex;align-items:center;gap:11px;margin:11px 0;font-size:.85rem}
+  .bar-row .bl{width:106px;color:var(--muted);flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar-track{flex:1;background:var(--panel-2);border-radius:100px;height:8px;overflow:hidden}
+  .bar-fill{height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--accent-deep),var(--accent-2));transition:width 1s cubic-bezier(.2,.7,.2,1)}
+  .bar-fill.g{background:linear-gradient(90deg,#3c9268,var(--good))}
+  .bar-fill.w{background:linear-gradient(90deg,#a68a2f,var(--warn))}
+  .bar-fill.b{background:linear-gradient(90deg,#b0504a,var(--bad))}
+  .bar-row .bv{width:36px;text-align:right;font-family:ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums;color:var(--text);flex:none}
+
+  /* controls + table */
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .controls select,.controls input{background:var(--glass);border:1px solid var(--border);color:var(--text);
+    border-radius:10px;padding:9px 13px;font-size:.86rem;font-family:inherit}
+  .controls input{min-width:200px;flex:1}
+  .controls .count{margin-left:auto;color:var(--muted);font-size:.82rem;font-family:ui-monospace,Consolas,monospace}
+  .tablewrap{max-height:640px;overflow:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--glass-2)}
+  table{border-collapse:collapse;width:100%;min-width:840px;font-size:.85rem}
+  thead th{position:sticky;top:0;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(6px);
+    text-align:left;padding:12px 13px;font-size:.71rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);
+    border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}
+  thead th:hover{color:var(--text)}
+  tbody td{padding:11px 13px;border-bottom:1px solid var(--border-2);vertical-align:top}
+  tbody tr:hover{background:var(--glass)}
+  td.nm{font-weight:600;min-width:180px}
+  td.dir,td.pr{color:var(--muted)}
+  td.pr{font-family:ui-monospace,Consolas,monospace;font-size:.8rem;white-space:nowrap}
+  .pill{font-size:.7rem;padding:2px 9px;border-radius:100px;white-space:nowrap}
+  .pill.studio{background:var(--panel-2);color:var(--muted)}
+  .pill.solo{background:var(--accent-soft);color:var(--accent)}
+  .pill.collective{background:var(--sage-soft);color:var(--sage)}
+  .cf{font-size:.7rem;padding:2px 9px;border-radius:100px;white-space:nowrap}
+  .cf.verified{background:var(--good-bg);color:var(--good)} .cf.likely{background:var(--warn-bg);color:var(--warn)} .cf.unverified{background:var(--bad-bg);color:var(--bad)}
+  .ext{color:var(--accent);white-space:nowrap}
+  .note{background:var(--warn-bg);border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);border-radius:12px;padding:13px 16px;font-size:.83rem;margin-top:16px}
+  .note b{color:var(--warn)}
+
+  /* manifest */
+  .manifest{background:linear-gradient(160deg,var(--glass),transparent);border:1px solid var(--border);border-radius:24px;padding:40px;position:relative;overflow:hidden}
+  .manifest::after{content:"“";position:absolute;top:-40px;right:14px;font-size:13rem;line-height:1;color:var(--accent-soft);font-family:Georgia,serif;pointer-events:none}
+  .m-quote{font-size:clamp(1.1rem,2.1vw,1.42rem);line-height:1.55;max-width:60ch;font-weight:500;letter-spacing:-.01em}
+  .m-quote em{color:var(--accent);font-style:normal}
+  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:30px}
+  .pillar{border-top:2px solid var(--accent);padding-top:11px}
+  .pillar b{display:block;margin-bottom:3px} .pillar span{font-size:.82rem;color:var(--muted)}
+
+  /* research */
+  .rt-row{display:flex;gap:13px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--border-2)}
+  .rt-row:last-child{border-bottom:none}
+  .pr-dot{flex:none;font-size:.68rem;padding:3px 9px;border-radius:100px;margin-top:2px}
+  .pr-dot.now{background:var(--bad-bg);color:var(--bad)} .pr-dot.p12{background:var(--warn-bg);color:var(--warn)} .pr-dot.p34{background:var(--good-bg);color:var(--good)}
+  .rt-t{font-weight:600} .rt-d{font-size:.85rem;color:var(--muted)}
+
+  .files{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .file{font-family:ui-monospace,Consolas,monospace;font-size:.76rem;background:var(--glass);border:1px solid var(--border);border-radius:8px;padding:6px 11px;color:var(--muted)}
+  footer{padding:48px 0 70px;color:var(--muted);font-size:.85rem;position:relative;z-index:2}
 </style>
 
+<div class="bgfx"></div>
+<div class="grain"></div>
+
+<div class="app">
 <header class="topbar">
   <div class="wrap row">
-    <span class="brand"><svg class="logo-mark" viewBox="0 0 120 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VISTVO"><path d="M60 24 C 52 12, 30 12, 30 24 C 30 36, 52 36, 60 24 C 68 12, 90 12, 90 24 C 90 36, 68 36, 60 24 Z" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><path d="M60 36 V40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><rect x="40" y="40" width="60" height="46" rx="7" stroke="currentColor" stroke-width="3.4"/><path d="M40 54 L18 64 L40 74" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/></svg><b>V</b>istvo</span>
+    <span class="brand">
+      <svg class="logo-mark" viewBox="0 0 120 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VISTVO"><path d="M60 24 C 52 12, 30 12, 30 24 C 30 36, 52 36, 60 24 C 68 12, 90 12, 90 24 C 90 36, 68 36, 60 24 Z" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><path d="M60 36 V40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><rect x="40" y="40" width="60" height="46" rx="7" stroke="currentColor" stroke-width="3.4"/><path d="M40 54 L18 64 L40 74" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <span class="wm">vistvo</span>
+    </span>
     <span class="tagline">панель проекта · видеопродакшн + видеоарт</span>
     <nav class="nav">
-      <a href="#обзор">Обзор</a>
-      <a href="#роадмап">Роадмап</a>
-      <a href="#конкуренты">Конкуренты</a>
-      <a href="#стратегия">Стратегия</a>
-      <a href="#позиционирование">Воронки</a>
-      <a href="#манифест">Vistvo</a>
-      <a href="#ресёрч">Ресёрч</a>
-      <a href="#инструменты">Скиллы</a><a href="brief.html">Бриф</a>
+      <a href="#обзор">Обзор</a><a href="#роадмап">Роадмап</a><a href="#конкуренты">Конкуренты</a>
+      <a href="#стратегия">Стратегия</a><a href="#позиционирование">Воронки</a><a href="#манифест">Vistvo</a>
+      <a href="#ресёрч">Ресёрч</a><a href="brief.html">Бриф</a>
     </nav>
-    <button class="tbtn" id="themeBtn" title="Сменить тему" aria-label="Сменить тему">◐</button>
+    <button class="tgl" id="themeBtn" title="Тема" aria-label="Сменить тему">◐</button>
   </div>
 </header>
 
 <section class="hero" id="обзор">
-  <div class="wrap inner">
-    <p class="eyebrow">Живая камера · СПб / Москва · июль 2026</p>
-    <h1>Авторская концертная съёмка и видеоарт</h1>
-    <p class="lede">Два направления, один почерк. <b>Мультикам</b> — многокамерная съёмка концертов полного цикла для стабильного дохода в РФ. <b>Vistvo</b> — художественная «живая камера» для театров, галерей и музеев мира. Эта панель сводит стратегию, рынок и план в одно место.</p>
-    <div class="statuschips">
+  <div class="wrap">
+    <p class="eyebrow reveal">Живая камера · СПб / Москва · 2026</p>
+    <h1 class="reveal">Авторская концертная съёмка<br><span class="g">и видеоарт</span></h1>
+    <p class="lede reveal">Два направления, один почерк. <b>Мультикам</b> — многокамерная съёмка концертов полного цикла для стабильного дохода в РФ. <b>Vistvo</b> — художественная «живая камера» для театров, галерей и музеев мира.</p>
+    <div class="cta-row reveal">
+      <a class="btn primary" href="brief.html">Заполнить бриф на проработку →</a>
+      <a class="btn ghost" href="#конкуренты">Смотреть рынок · 178</a>
+    </div>
+    <div class="chips reveal">
       <span class="chip on">Фаза 0 · Фундамент</span>
       <span class="chip">Сегмент: <b>Средний+</b></span>
       <span class="chip">Модель: <b>турнкей + аренда</b></span>
       <span class="chip">Мультикам: <b>приоритет</b></span>
-      <span class="chip">Видеоарт: <b>цель</b></span>
     </div>
 
-    <div class="hero-cta"><a href="brief.html">📝 Заполнить бриф на проработку →</a></div>
-    <div class="kpis">
-      <div class="kpi"><div class="k-label">Направления</div><div class="k-val">2</div><div class="k-sub">мультикам · видеоарт</div></div>
-      <div class="kpi"><div class="k-label">Конкуренты в базе</div><div class="k-val accent" id="kpiTotal">178</div><div class="k-sub"><span id="kpiVer">165</span> подтверждено вебом</div></div>
-      <div class="kpi"><div class="k-label">Регион-фокус</div><div class="k-val" style="font-size:1.35rem">РФ + мир</div><div class="k-sub">мультикам РФ · арт мир</div></div>
-      <div class="kpi"><div class="k-label">Ресурс студии</div><div class="k-val">8+</div><div class="k-sub">камер + кинооптика + команда</div></div>
-      <div class="kpi"><div class="k-label">Готово документов</div><div class="k-val">9</div><div class="k-sub">стратегия · рынок · воронки</div></div>
-      <div class="kpi"><div class="k-label">Ценовой якорь РФ</div><div class="k-val" style="font-size:1.2rem">14–800к ₽</div><div class="k-sub">концерт: событие → тур</div></div>
+    <div class="bento reveal">
+      <div class="tile big"><div class="t-label">Конкуренты в базе</div><div class="t-val acc"><span class="num" data-to="178">0</span></div><div class="t-sub"><span class="num" data-to="165">0</span> подтверждено веб-ресёрчем</div></div>
+      <div class="tile"><div class="t-label">Направления</div><div class="t-val"><span class="num" data-to="2">0</span></div><div class="t-sub">мультикам · видеоарт</div></div>
+      <div class="tile"><div class="t-label">Ресурс студии</div><div class="t-val">8+</div><div class="t-sub">камер + кинооптика + команда</div></div>
+      <div class="tile"><div class="t-label">Регион-фокус</div><div class="t-val" style="font-size:1.5rem">РФ + мир</div><div class="t-sub">мультикам РФ · арт мир</div></div>
+      <div class="tile"><div class="t-label">Документов готово</div><div class="t-val"><span class="num" data-to="9">0</span></div><div class="t-sub">стратегия · рынок · воронки</div></div>
+      <div class="tile wide"><div class="t-label">Ценовой якорь РФ (концерт)</div><div class="t-val" style="font-size:1.6rem">14–800к ₽</div><div class="t-sub">событие → тур; ставка соло от 1 500 ₽/ч</div></div>
     </div>
   </div>
 </section>
 
 <main class="wrap">
-
   <section class="blk" id="роадмап">
-    <div class="s-head"><span class="s-num">01</span><h2>Роадмап: мультикам сначала, видеоарт слоем</h2></div>
-    <p class="s-desc">Порядок задан вами: сперва поставить мультикам на рельсы ради постоянного дохода, затем спокойно растить его и выводить видеоарт в мир. Арт-материал копится попутно уже с фазы 0.</p>
-    <div class="timeline">
-      <div class="ph now"><div class="p-n">Ф.0</div><div class="p-t">Фундамент</div><div class="p-when">0–1 мес</div>
-        <ul><li>Архив → шоурил + 3–5 кейсов</li><li>15–20 вертикалей впрок</li><li>Соцсети + лендинг</li><li>Прайс-лестница, CRM</li></ul></div>
-      <div class="ph"><div class="p-n">Ф.1</div><div class="p-t">Поток</div><div class="p-when">1–3 мес</div>
-        <ul><li>B2B-outreach адресно</li><li>Аренда смен + турнкей</li><li>3–5 якорных кейсов</li><li>Рефералы</li></ul></div>
-      <div class="ph"><div class="p-n">Ф.2</div><div class="p-t">Система</div><div class="p-when">3–6 мес</div>
-        <ul><li>Контент-воронка на автопилоте</li><li>Партнёрства свет/звук</li><li>Апселл в турнкей</li><li>Первый арт-пилот</li></ul></div>
-      <div class="ph"><div class="p-n">Ф.3</div><div class="p-t">Масштаб + арт</div><div class="p-when">6–12 мес</div>
-        <ul><li>Мультистраничный сайт</li><li>Регионы РФ</li><li>Подачи на opencalls</li></ul></div>
-      <div class="ph"><div class="p-n">Ф.4</div><div class="p-t">Арт в мир</div><div class="p-when">12–24 мес</div>
-        <ul><li>Галереи, музеи, гранты</li><li>Резиденции, бренд×арт</li><li>Мультикам на аутсорс-базе</li></ul></div>
+    <div class="s-head reveal"><span class="s-num">01</span><h2>Роадмап: мультикам сначала, видеоарт слоем</h2></div>
+    <p class="s-desc reveal">Сперва ставим мультикам на рельсы ради постоянного дохода, затем растим его и выводим видеоарт в мир. Арт-материал копится попутно уже с фазы 0.</p>
+    <div class="timeline reveal">
+      <div class="ph now"><div class="p-n">Ф.0</div><div class="p-t">Фундамент</div><div class="p-when">0–1 мес</div><ul><li>Архив → шоурил + кейсы</li><li>15–20 вертикалей</li><li>Соцсети + сайт</li><li>Прайс, CRM</li></ul></div>
+      <div class="ph"><div class="p-n">Ф.1</div><div class="p-t">Поток</div><div class="p-when">1–3 мес</div><ul><li>B2B-outreach</li><li>Аренда + турнкей</li><li>3–5 кейсов</li><li>Рефералы</li></ul></div>
+      <div class="ph"><div class="p-n">Ф.2</div><div class="p-t">Система</div><div class="p-when">3–6 мес</div><ul><li>Контент-воронка</li><li>Партнёрства</li><li>Апселл в турнкей</li><li>Арт-пилот</li></ul></div>
+      <div class="ph"><div class="p-n">Ф.3</div><div class="p-t">Масштаб + арт</div><div class="p-when">6–12 мес</div><ul><li>Мультисайт</li><li>Регионы РФ</li><li>Opencalls</li></ul></div>
+      <div class="ph"><div class="p-n">Ф.4</div><div class="p-t">Арт в мир</div><div class="p-when">12–24 мес</div><ul><li>Галереи, музеи</li><li>Гранты, резиденции</li><li>Мультикам-база</li></ul></div>
     </div>
   </section>
 
   <section class="blk" id="конкуренты">
-    <div class="s-head"><span class="s-num">02</span><h2>Рынок: 178 конкурентов и референсов</h2></div>
-    <p class="s-desc">Собрано мультиагентным веб-ресёрчем (июль 2026). Фильтруйте по региону, типу и достоверности; ищите по названию, направлению, стилю. Полные данные — в <span class="mono">competitors_raw.json / .csv</span>.</p>
-
-    <div class="charts">
+    <div class="s-head reveal"><span class="s-num">02</span><h2>Рынок: 178 конкурентов и референсов</h2></div>
+    <p class="s-desc reveal">Собрано мультиагентным веб-ресёрчем (июль 2026). Фильтруйте по региону, типу и достоверности; ищите по названию, направлению, стилю. Полные данные — <span class="mono">competitors_raw.json / .csv</span>.</p>
+    <div class="charts reveal">
       <div class="chart"><h4>По региону</h4><div id="chartRegion"></div></div>
       <div class="chart"><h4>По типу</h4><div id="chartType"></div></div>
       <div class="chart"><h4>Достоверность</h4><div id="chartConf"></div></div>
     </div>
-
-    <div class="controls">
+    <div class="controls reveal">
       <select id="fRegion"><option value="">Все регионы</option><option value="1">Санкт-Петербург</option><option value="2">Москва</option><option value="3">Регионы РФ</option><option value="4">Мир (арт/бенчмарк)</option></select>
       <select id="fType"><option value="">Все типы</option><option value="studio">Студии</option><option value="solo">Соло</option><option value="collective">Коллективы</option></select>
       <select id="fConf"><option value="">Любая достоверность</option><option value="verified">verified</option><option value="likely">likely</option><option value="unverified">unverified</option></select>
       <input id="fSearch" type="search" placeholder="Поиск: имя, направление, стиль…" aria-label="Поиск">
       <span class="count" id="rowCount"></span>
     </div>
-
-    <div class="tablewrap">
+    <div class="tablewrap reveal">
       <table>
-        <thead><tr>
-          <th data-k="n">Название</th><th data-k="t">Тип</th><th data-k="c">Город</th>
-          <th data-k="d">Направление</th><th data-k="p">Цена / оценка</th><th data-k="conf">Дост.</th><th>Ссылка</th>
-        </tr></thead>
+        <thead><tr><th data-k="n">Название</th><th data-k="t">Тип</th><th data-k="c">Город</th><th data-k="d">Направление</th><th data-k="p">Цена / оценка</th><th data-k="conf">Дост.</th><th>Ссылка</th></tr></thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
-    <div class="note"><b>Честно о ценах:</b> часть цен — опубликованный прайс с сайтов (verified), часть — рыночная ОЦЕНКА (помечено в исходных данных). Цены меняются; перед КП проверяйте по ссылке. Топ-листы и ценовые ориентиры по регионам — в файле <span class="mono">competitors_analysis.md</span> (готово — топ-листы и ценовые ориентиры).</div>
+    <div class="note reveal"><b>Честно о ценах:</b> часть — опубликованный прайс (verified), часть — рыночная ОЦЕНКА. Цены меняются; перед КП проверяйте по ссылке. Топ-листы и ценовые ориентиры — в <span class="mono">competitors_analysis.md</span>.</div>
   </section>
 
   <section class="blk" id="стратегия">
-    <div class="s-head"><span class="s-num">03</span><h2>Три сценария → выбран «Авторская студия»</h2></div>
-    <p class="s-desc">Ваш актив (8+ камер, кастомная кинооптика, полная команда со звуком и светом, аутсорс) кладёт вас в верхний ярус возможностей. Значит — заходить в Среднем+, но с продуктом премиум-уровня. Ценой с соло не конкурируем.</p>
-    <div class="grid3">
-      <div class="card"><span class="tag">Сценарий A</span><h3>Поток</h3><p class="muted">Максимум загрузки через аренду и средний ценник. Быстрый кэш, но слабый бренд и риск демпинга.</p><p class="muted" style="margin-top:8px">→ Только как тактика фаз 0–3.</p></div>
-      <div class="card feat"><span class="tag">Сценарий B · выбран</span><h3>Авторская студия полного цикла</h3><p class="muted">Позиционирование Средний+ с премиум-продуктом, дуальная модель, витрина кейсов, inbound + B2B. Естественный мост к vistvo.</p><ul class="clean"><li>Максимум и дохода, и стратегической цели</li></ul></div>
-      <div class="card"><span class="tag">Сценарий C</span><h3>Арт-форвард</h3><p class="muted">Сразу тянуть арт-бренд, мультикам на аутсорсе. Медленный доход, рынок ещё не знает имени.</p><p class="muted" style="margin-top:8px">→ Преждевременно; вернуться в фазе 4.</p></div>
+    <div class="s-head reveal"><span class="s-num">03</span><h2>Три сценария → выбран «Авторская студия»</h2></div>
+    <p class="s-desc reveal">Ваш актив (8+ камер, кастомная кинооптика, команда со звуком и светом, аутсорс) — верхний ярус возможностей. Значит: заходить в Среднем+, но с продуктом премиум-уровня. Ценой с соло не конкурируем.</p>
+    <div class="grid3 reveal">
+      <div class="card"><span class="tag">Сценарий A</span><h3>Поток</h3><p class="muted">Максимум загрузки через аренду и средний ценник. Быстрый кэш, но слабый бренд и риск демпинга.</p><p class="muted" style="margin-top:8px">→ Только тактика фаз 0–3.</p></div>
+      <div class="card feat"><span class="tag">Сценарий B · выбран</span><h3>Авторская студия полного цикла</h3><p class="muted">Позиционирование Средний+ с премиум-продуктом, дуальная модель, витрина кейсов, inbound + B2B. Естественный мост к vistvo.</p></div>
+      <div class="card"><span class="tag">Сценарий C</span><h3>Арт-форвард</h3><p class="muted">Сразу тянуть арт-бренд, мультикам на аутсорсе. Медленный доход, рынок не знает имени.</p><p class="muted" style="margin-top:8px">→ Преждевременно; фаза 4.</p></div>
     </div>
-    <div class="grid2" style="margin-top:16px">
-      <div class="card"><h3>Дуальная модель мультикам</h3>
-        <ul class="clean"><li><b>Аренда смены</b> — продакшнам, площадкам, агентствам. Быстрый кэш, минимум продаж.</li><li><b>Турнкей съёмка+монтаж</b> — артистам/лейблам под ключ. Высокий чек, свои кейсы, апселл.</li><li>Пакет под соцсети из коробки: полное видео + клипы + вертикали.</li></ul></div>
-      <div class="card"><h3>Дифференциатор №1</h3>
-        <p class="muted">Полный цикл одной командой: <b style="color:var(--text)">камеры + звук с пульта + свет + кастомная оптика + монтаж</b>. Большинство конкурентов закрывают 2–3 из этих пунктов и докупают остальное.</p></div>
+    <div class="grid2 reveal" style="margin-top:16px">
+      <div class="card"><h3>Дуальная модель мультикам</h3><ul class="clean"><li><b class="tx">Аренда смены</b> — продакшнам, площадкам. Быстрый кэш, минимум продаж.</li><li><b class="tx">Турнкей съёмка+монтаж</b> — артистам/лейблам под ключ. Высокий чек, кейсы, апселл.</li><li>Пакет под соцсети: полное видео + клипы + вертикали.</li></ul></div>
+      <div class="card"><h3>Дифференциатор №1</h3><p class="muted">Полный цикл одной командой: <b class="tx">камеры + звук с пульта + свет + кастомная оптика + монтаж</b>. У большинства конкурентов закрыто 2–3 из этих пунктов.</p></div>
     </div>
   </section>
 
   <section class="blk" id="позиционирование">
-    <div class="s-head"><span class="s-num">04</span><h2>Позиционирование и воронки — не рассылки</h2></div>
-    <p class="s-desc">Pull, а не спам: вас находят и рекомендуют, потому что видели результат. Каждый исходящий контакт несёт клиенту ценность (клип, разбор, идею) до продажи.</p>
-    <div class="grid2">
-      <div class="card"><h3>Позиционное ядро · Мультикам</h3><p class="muted">«Авторская концертная съёмка полного цикла — кинокартинка, свой звук и свет, готовый материал под ключ. Дорого выглядит, честно стоит.» В отличие от соло (фиксируют) и ПТС (обезличенно).</p></div>
-      <div class="card"><h3>Позиционное ядро · Vistvo</h3><p class="muted">«Практика ВидеоСоТворения: живая камера на грани реальности и абстракции света, дающая зрителю сопричастность. Не документация — соавторство с событием.»</p></div>
+    <div class="s-head reveal"><span class="s-num">04</span><h2>Позиционирование и воронки — не рассылки</h2></div>
+    <p class="s-desc reveal">Pull, а не спам: вас находят и рекомендуют, потому что видели результат. Каждый контакт несёт клиенту ценность до продажи.</p>
+    <div class="grid2 reveal">
+      <div class="card"><h3>Позиционное ядро · Мультикам</h3><p class="muted">«Авторская концертная съёмка полного цикла — кинокартинка, свой звук и свет, готовый материал под ключ.» В отличие от соло (фиксируют) и ПТС (обезличенно).</p></div>
+      <div class="card"><h3>Позиционное ядро · Vistvo</h3><p class="muted">«Практика ВидеоСоТворения: живая камера на грани реальности и абстракции света, дающая зрителю сопричастность. Не документация — соавторство.»</p></div>
     </div>
-    <div class="grid3" style="margin-top:16px">
-      <div class="card"><h3>B2B «через демонстрацию»</h3><ul class="tight muted"><li>Целевые площадки/промоутеры</li><li>Снимаем 1 сильный клип бартером</li><li>Отдаём с их брендом + мини-КП</li><li>Пробная смена → резидент</li></ul></div>
-      <div class="card"><h3>Контентная (inbound)</h3><ul class="tight muted"><li>Каждая съёмка → 5–8 единиц контента</li><li>Вертикали, «разбор кадра», кейсы</li><li>VK · YouTube · Telegram</li><li>Верх воронки → сайт (дно)</li></ul></div>
-      <div class="card"><h3>Реферальная + арт</h3><ul class="tight muted"><li>% звукорежам, свету, площадкам</li><li>Партнёрства аренды света/звука</li><li>Арт: театр → opencalls → галереи</li><li>Гранты, резиденции, бренд×арт</li></ul></div>
+    <div class="grid3 reveal" style="margin-top:16px">
+      <div class="card"><h3>B2B «через демонстрацию»</h3><ul class="tight muted"><li>Целевые площадки/промоутеры</li><li>1 сильный клип бартером</li><li>Отдаём с их брендом + КП</li><li>Пробная смена → резидент</li></ul></div>
+      <div class="card"><h3>Контентная (inbound)</h3><ul class="tight muted"><li>Каждая съёмка → 5–8 единиц</li><li>Вертикали, разбор кадра, кейсы</li><li>VK · YouTube · Telegram</li><li>Верх воронки → сайт</li></ul></div>
+      <div class="card"><h3>Реферальная + арт</h3><ul class="tight muted"><li>% звукорежам, свету, площадкам</li><li>Партнёрства аренды</li><li>Театр → opencalls → галереи</li><li>Гранты, резиденции</li></ul></div>
     </div>
   </section>
 
   <section class="blk" id="манифест">
-    <div class="s-head"><span class="s-num">05</span><h2>Художественное ядро — Vistvo</h2></div>
-    <div class="manifest">
+    <div class="s-head reveal"><span class="s-num">05</span><h2>Художественное ядро — Vistvo</h2></div>
+    <div class="manifest reveal">
       <p class="m-quote">«Уникальность <em>ВидеоСоТворения</em> — в очень внимательной и чуткой работе оператора. Кинокамера органичная и живая. Кастомная оптика позволяет держать <em>фокус на кончиках пальцев</em>, открывая переход в абстрактный мир световых бликов и возвращение обратно. Состояние объекта ведёт камеру — а значит, и зрителя. Так рождается глубина видеоряда и <em>чувство сопричастности</em>.»</p>
       <div class="pillars">
         <div class="pillar"><b>Живая камера</b><span>чувствует, а не фиксирует</span></div>
@@ -343,118 +342,106 @@
   </section>
 
   <section class="blk" id="ресёрч">
-    <div class="s-head"><span class="s-num">06</span><h2>Что исследуем дальше</h2></div>
-    <p class="s-desc">Приоритет: 🔴 сейчас (двигает поток) · 🟡 фаза 1–2 · 🟢 фаза 3–4 (арт). Полный список из 12 треков и 19 вопросов для улучшения — в <span class="mono">06_research/additional_research.md</span>.</p>
-    <div class="card">
-      <div class="rt-row"><span class="pr-dot now">сейчас</span><div><div class="rt-t">Ценовая аналитика РФ вглубь</div><div class="rt-d">что входит в пакеты топ-студий, из чего чек — для лестницы Средний+</div></div></div>
-      <div class="rt-row"><span class="pr-dot now">сейчас</span><div><div class="rt-t">Спрос / SEO</div><div class="rt-d">что и сколько ищут, сезонность — объём рынка и ключи для сайта</div></div></div>
-      <div class="rt-row"><span class="pr-dot now">сейчас</span><div><div class="rt-t">Карта площадок СПб/Москва</div><div class="rt-d">клубы/залы + кто у них снимает — прямой B2B-таргет</div></div></div>
+    <div class="s-head reveal"><span class="s-num">06</span><h2>Что исследуем дальше</h2></div>
+    <p class="s-desc reveal">🔴 сейчас (двигает поток) · 🟡 фаза 1–2 · 🟢 фаза 3–4 (арт). Полный список из 12 треков и 19 вопросов — в <span class="mono">06_research/additional_research.md</span>.</p>
+    <div class="card reveal">
+      <div class="rt-row"><span class="pr-dot now">сейчас</span><div><div class="rt-t">Ценовая аналитика РФ вглубь</div><div class="rt-d">что входит в пакеты топ-студий — для лестницы Средний+</div></div></div>
+      <div class="rt-row"><span class="pr-dot now">сейчас</span><div><div class="rt-t">Спрос / SEO</div><div class="rt-d">что и сколько ищут — объём рынка и ключи для сайта</div></div></div>
+      <div class="rt-row"><span class="pr-dot now">сейчас</span><div><div class="rt-t">Карта площадок СПб/Москва</div><div class="rt-d">клубы/залы + кто у них снимает — B2B-таргет</div></div></div>
       <div class="rt-row"><span class="pr-dot p12">ф.1–2</span><div><div class="rt-t">Кейс-разбор топ-3 студий</div><div class="rt-d">их воронка, УТП, подача — учиться и найти слабые места</div></div></div>
-      <div class="rt-row"><span class="pr-dot p12">ф.1–2</span><div><div class="rt-t">Юнит-экономика</div><div class="rt-d">себестоимость смены, точка безубыточности, целевая загрузка</div></div></div>
       <div class="rt-row"><span class="pr-dot p34">ф.3–4</span><div><div class="rt-t">Календарь opencalls / грантов / резиденций</div><div class="rt-d">системные подачи для видеоарт (мир + РФ)</div></div></div>
-    </div>
-  </section>
-
-  <section class="blk" id="инструменты" style="border-bottom:none">
-    <div class="s-head"><span class="s-num">07</span><h2>Скиллы и инструменты проекта</h2></div>
-    <p class="s-desc">Проверенные профессиональные скиллы, доступные в этой среде и уже работающие на задачу. Community-скиллы (13 шт., маркетинг/SMM/SEO) — в файле <span class="mono">skills.md</span>.</p>
-    <div class="grid3" id="skillsGrid">
-      <div class="card"><h3>deep-research</h3><p class="muted">Многоисточниковый ресёрч рынка и конкурентов с проверкой фактов и цитированием. <b style="color:var(--text)">Ядро таблицы 163 конкурентов.</b></p></div>
-      <div class="card"><h3>Workflow (мультиагент)</h3><p class="muted">Оркестрация форк-фолоу: параллельные исследователи по регионам + синтез. Так собран весь рынок.</p></div>
-      <div class="card"><h3>dataviz</h3><p class="muted">Таблицы/дашборды и графики — карта «цена × стиль», распределения. Этот дашборд.</p></div>
-      <div class="card"><h3>artifact-design</h3><p class="muted">Дизайн и сборка сайта/лендинга и этой панели: адаптив, светлая/тёмная тема.</p></div>
-      <div class="card"><h3>higgsfield-generate + product-photoshoot</h3><p class="muted">Генерация визуалов: мудборды, обложки, рекламные креативы, превью для соцсетей и сайта.</p></div>
-      <div class="card"><h3>td-glsl · td-pops · sc-designer</h3><p class="muted">Для арт-направления: генеративные медиа-арт материалы под инсталляции и digital-art заявки.</p></div>
     </div>
   </section>
 
   <footer>
     <p><b>VISTVO</b> · живая панель проекта. Пополняется данными об артисте, кейсами, ценами, ресёрчами.</p>
-    <div class="files">
-      <span class="file">01_strategy/</span><span class="file">02_competitors/</span><span class="file">03_positioning/</span>
-      <span class="file">04_website/</span><span class="file">05_artist/</span><span class="file">06_research/</span>
-    </div>
-    <p style="margin-top:14px;color:var(--faint)">Обновлено 2026-07 · данные ресёрча: июль 2026 · confidence-модель: verified / likely / unverified.</p>
+    <div class="files"><span class="file">01_strategy/</span><span class="file">02_competitors/</span><span class="file">03_positioning/</span><span class="file">04_website/</span><span class="file">05_artist/</span><span class="file">06_research/</span></div>
+    <p style="margin-top:14px;color:var(--faint)">Обновлено 2026-07 · данные ресёрча: июль 2026 · confidence: verified / likely / unverified.</p>
   </footer>
 </main>
+</div>
 
 <script id="data" type="application/json">[{"n":"Студия Дениса Золотова (Zolotov Studio)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная видеосъёмка концертов и спектаклей, онлайн-трансляции, постпродакшн","p":"от 4 000 ₽/час, минимум заказа 12 000 ₽; проекты в портфолио 50 000–80…","s":"Кинематографичный многокамерный 4K, кинокамеры + оптика, стабилизаторы, кран до 16 м, прям…","conf":"verified","u":"https://zolotov.studio/videosemka-koncertov"},{"n":"Петербургская Киноартель","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная съёмка концертов (9–14 камер) с профессиональной звукозаписью и монтажом","p":"от 65 000 ₽ за концертную съёмку","s":"Телевизионное/вещательное качество, академическая и театральная сцена, поканальная звукоза…","conf":"verified","u":"https://kinoartel.spb.ru/mnogocamer.html"},{"n":"Студия «Иллюзион» (Illuzion.tv)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная ПТС-съёмка концертов, шоу и спектаклей, трансляция на экраны, постпродакшн","p":"~60 000–250 000 ₽ за концерт (ПТС)","s":"Собственная передвижная телестанция (ПТС), 4–10 камер, микшерный пульт, многоканальный зву…","conf":"verified","u":"https://www.illuzion.tv/pts"},{"n":"Breeze Media Group","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная съёмка и трансляция концертов/спектаклей, аренда ПТС, полный цикл продакшн +…","p":"FullHD до 3 ч: 2 камеры 14 000 ₽ … 5 камер 41 000 ₽; с ПТС/микшером: 2…","s":"Студийный многокамерный продакшн с видеомикшером/ПТС, вывод графики и титров","conf":"verified","u":"https://breezemg.com/stoimost-mnogokamernaya-videosyomka/"},{"n":"Kurban Studio (ИП Курбан М. А.)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная съёмка концертов и фестивалей, событийный видеопродакшн под ключ","p":"~40 000–150 000 ₽ за концерт/фестиваль","s":"Динамичная событийная многокамерная съёмка, фестивальные aftermovie, премии","conf":"verified","u":"https://kurban.studio/videosemka-koncertov"},{"n":"Final Cut Production","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная видеосъёмка концертов и музыкальных клипов","p":"~80 000–300 000 ₽ за концертную съёмку","s":"Концертные live-съёмки топовых артистов, музыкальные клипы, динамичная многоракурсная рабо…","conf":"verified","u":"https://finalcut.orgs.biz/"},{"n":"Видеография в Санкт-Петербурге (Павел Фоминенко / peterburg-video)","t":"solo","c":"Санкт-Петербург","b":1,"d":"Многокамерная съёмка выступлений групп в клубах, съёмка + монтаж под ключ, клипы","p":"1 камера 1 500 ₽/час; видео+монтаж 3 000 ₽/час; многокамера с монтажом…","s":"Клубная многокамерная съёмка (стационарные планы + стедикам), звук на рекордер, инди/ска-п…","conf":"verified","u":"https://peterburg-video.orgs.biz/"},{"n":"StudioMedia (studiomedia.ru)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная видеосъёмка концертов, конференций и соревнований, монтаж","p":"видеосъёмка от 3 500 ₽/час; монтаж от 5 000 ₽; разработка сценария от…","s":"Универсальная событийная многокамерная съёмка (минимум 2 оператора для живых выступлений)","conf":"likely","u":"https://studiomedia.ru/videosemka-kontsertov/"},{"n":"Cromi","t":"studio","c":"Санкт-Петербург","b":1,"d":"Аренда видеооборудования и организация многокамерных трансляций (до 8 камер) live-событий,…","p":"2 камеры 26 000 ₽; 3 камеры 34 500 ₽; отдельная камера Sony PXW-Z150 5…","s":"Вещательные многокамерные трансляции 4K/FullHD на Blackmagic ATEM, event-tech; профиль ско…","conf":"verified","u":"https://www.cromi.rent/arenda-video/"},{"n":"VV-Studio (Владимир Виноградов)","t":"solo","c":"Санкт-Петербург","b":1,"d":"Многокамерная видеосъёмка концертов и спектаклей, событийное видео","p":"~15 000–60 000 ₽ за событие","s":"Событийная многокамерная съёмка (2+ камеры), оперативный монтаж","conf":"verified","u":"https://vv-studio.spb.ru/"},{"n":"Baltic Video (any-video-in-spb)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная съёмка концертов и конкурсов, аэросъёмка, интернет-трансляции, монтаж","p":"~20 000–80 000 ₽ за мероприятие","s":"Событийная многокамера с выводом на экраны и трансляцией, аэросъёмка","conf":"verified","u":"https://any-video-in-spb.orgs.biz/"},{"n":"Antonenko Media","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная видеосъёмка концертов и выступлений, онлайн-трансляции, постпродакшн","p":"тарифы Basic / Standard / Premium — суммы не указаны; ориентировочно ~…","s":"Акцент на энергии живого выступления, многоканальный звук с пульта + микрофоны зала, «от к…","conf":"verified","u":"https://antonenko-media.com/concert/"},{"n":"SPB-Photo-Video (spb-photo-video.ru)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Съёмка концертных видео и LIVE-клипов на крупных площадках Петербурга","p":"~15 000–60 000 ₽ за концертную съёмку","s":"Концертные LIVE-клипы, работа на крупных концертных площадках СПб","conf":"unverified","u":"https://spb-photo-video.ru/videosemka-koncertov-i-show"},{"n":"NIGHT VISION (nightvisionspb)","t":"collective","c":"Санкт-Петербург","b":1,"d":"Видео- и фоторепортаж из клубной/event-сферы (живые выступления, вечеринки)","p":"~10 000–40 000 ₽ за съёмку мероприятия","s":"Ночная клубная эстетика, живые эмоции, свет, репортажный подход; работает с 2024 года","conf":"likely","u":"https://nightvisionspb.ru/"},{"n":"Losfilms (Творческий видеопродакшн Losfilms / ТвоёКино)","t":"studio","c":"Москва (Павелецкая наб., 2…","b":2,"d":"Многокамерная съёмка концертов и мероприятий, live-трансляции, музыкальные видео","p":"от 200 000 – 500 000 ₽ за концерт (пакеты)","s":"Эмоциональная, атмосферная концертная документалистика, «эффект присутствия»","conf":"verified","u":"https://losfilms.ru"},{"n":"PROFVIDEO","t":"studio","c":"Москва / Московская област…","b":2,"d":"Многокамерная съёмка и онлайн-трансляции концертов (4–12 камер), ТВ-режиссура эфира","p":"от 240 000 – 900 000 ₽","s":"Полноценная ТВ-режиссура эфира, ISO-запись, чистый звук с пульта, мультиплатформенная тран…","conf":"verified","u":"https://profvideo.ru"},{"n":"VStream Production","t":"studio","c":"Москва (выезд по РФ)","b":2,"d":"Многокамерная съёмка концертов, онлайн-трансляции, спорт и конференции","p":"1 камера от 20 000 ₽, 2 камеры от 55 000 ₽, 3 камеры от 108 000 ₽","s":"Камеры с высокой светочувствительностью и широким динамическим диапазоном, звук с пульта +…","conf":"verified","u":"https://videostream.su"},{"n":"Obscura Production","t":"studio","c":"Москва (выезд по РФ)","b":2,"d":"Съёмка концертов и фестивалей, ивент-видео полного цикла, трансляции (с корпоративным укло…","p":"50 000 – 100 000 ₽ (пакеты)","s":"Full-cycle ивент-продакшн, команда 14 штатных + 10 фрилансеров, 1000+ роликов с 2019 г.","conf":"verified","u":"https://obscura.pro"},{"n":"PiToN Production","t":"studio","c":"Москва и Московская област…","b":2,"d":"Многокамерная видеосъёмка концертов с поканальной записью звука, мультитрек","p":"Мультитрек 7 000 ₽; лайв-видео 6 ракурсов Full HD + поканальный звук 1…","s":"Недорогая многокамерная запись выступлений с акцентом на качественный звук, ненавязчивая с…","conf":"verified","u":"https://pitonpro.orgs.biz"},{"n":"PrimaStudio","t":"studio","c":"Москва","b":2,"d":"Многокамерная концертная съёмка (7 камер Sony PXW-Z90 4K), трансляции, театр, интервью","p":"оценка ~40 000 – 150 000 ₽ за концерт","s":"Съёмка только собственного материала без посредников, 7 камер 4K, позиционирование против…","conf":"verified","u":"https://www.primastudio.ru"},{"n":"APIK (Апик студии)","t":"studio","c":"Москва (ул. Профсоюзная, 5…","b":2,"d":"Многокамерная съёмка концертов, клипы, фестивали, корпоративы","p":"12 000 – 45 000 ₽ (пакеты 1–3 камеры)","s":"Сервис-ориентированная, звук на ZOOM-рекордер, монтаж и цветокоррекция","conf":"verified","u":"https://videoagent.ru"},{"n":"Cinecast","t":"studio","c":"Москва (Б. Дмитровка, 32с4…","b":2,"d":"Многокамерная съёмка концертов и онлайн-трансляции, подкаст-студия, конференции","p":"Концерты от 100 000 ₽; трансляции от 40 000 ₽","s":"Акцент на атмосферу концерта, качественный звукорежиссёрский тракт, динамичная операторска…","conf":"verified","u":"https://cinecast.ru"},{"n":"TelemostPRO (ТелемостПро)","t":"studio","c":"Москва (Багратионовский пе…","b":2,"d":"Аренда ПТС + многокамерная съёмка и онлайн-трансляции концертов/ивентов под ключ","p":"Покамерно за смену: камера от 3 000 ₽, микшер ATEM от 4 500 ₽, стрим 1…","s":"Под ключ — доставка/настройка/демонтаж, оборудование Blackmagic Design, Roland, SFS-lab","conf":"verified","u":"https://telemost.pro"},{"n":"TRUST MEDIA (tmedia.tv)","t":"studio","c":"Москва","b":2,"d":"Аренда ПТС и многокамерные комплексы (2–8 камер) для съёмки/трансляции концертов и ТВ-шоу","p":"оценка ~ от 100 000 – 300 000 ₽ за смену ПТС","s":"Broadcast-grade оборудование: камеры URSA Broadcast 4K, микшеры ATEM, рекордеры Hyperdeck,…","conf":"verified","u":"https://tmedia.tv"},{"n":"VideoGlobal","t":"studio","c":"Москва (Матвеевская ул., 3…","b":2,"d":"Многокамерная съёмка конференций/форумов/мероприятий, видеотрансляции (B2B)","p":"45 000 – 180 000 ₽ (пакеты)","s":"B2B-ориентированный, технически надёжный ивент-продакшн, работает с 2009 г., 525+ проектов","conf":"verified","u":"https://videoglobal.ru"},{"n":"Direct Studio Production","t":"studio","c":"Москва","b":2,"d":"Многокамерная съёмка мероприятий, живой звук, репортаж, трансляции","p":"оценка ~50 000 – 150 000 ₽ за ивент","s":"Корпоративный ивент-репортаж, многокамерная съёмка + живой звук, итоговый монтаж 2–3 мин,…","conf":"verified","u":"https://www.directstudio.ru"},{"n":"Videonika (Видеоника)","t":"studio","c":"Москва (Сокольническая пл.…","b":2,"d":"Многокамерная съёмка концертов и мероприятий, постпродакшн","p":"оценка ~30 000 – 100 000 ₽ за концерт","s":"Акцент на техническое качество и многокамерную координацию, постпродакшн","conf":"verified","u":"https://videonika.ru"},{"n":"Kalmykoff (видеосъёмка академических концертов)","t":"solo","c":"Москва","b":2,"d":"Многокамерная съёмка академической/классической музыки — оркестры, хоры, театр, камерные а…","p":"оценка ~30 000 – 80 000 ₽ за концерт","s":"Академическая/классическая направленность, документальная фиксация, 2–4 камеры 4K, двойные…","conf":"verified","u":"https://kalmykoff.ru"},{"n":"Muse Studio","t":"studio","c":"Москва","b":2,"d":"Съёмка мероприятий, концертов и конференций, ивент-видео полного цикла","p":"оценка ~40 000 – 120 000 ₽","s":"Full-cycle продакшн, индивидуальный подход, команда со стажем 6–18 лет","conf":"likely","u":"https://musestudio.ru"},{"n":"Студия Дениса Золотова (Zolotov Studio)","t":"studio","c":"Санкт-Петербург (съёмки в…","b":1,"d":"Многокамерная съёмка и трансляции концертов (ПТС до 20 камер), гастрольные туры артистов","p":"от 4 000 ₽/час, минимальный заказ 12 000 ₽; проекты в портфолио 50 000…","s":"Кинокамеры 4K, 16-метровые краны, ПТС до 20 камер, вывод графики/титров в прямом эфире, га…","conf":"verified","u":"https://zolotov.studio"},{"n":"VideoLab Ekb","t":"studio","c":"Екатеринбург","b":3,"d":"Событийный видеопродакшн, прямые трансляции концертов/презентаций/конференций, студийные з…","p":"Аренда студии 2 000 ₽/ч; видеопакет (1 видео + 3 reels) 15 000 ₽; инте…","s":"Малый формат/студия у Плотинки, упор на прямые эфиры и мультиформатный контент","conf":"verified","u":"https://vlabekb.orgs.biz/"},{"n":"HIVE MONKS production","t":"studio","c":"Екатеринбург","b":3,"d":"Видеопродакшн полного цикла; съёмки концертов и массовых праздников, рекламные ролики","p":"Сценарий 10 000 ₽; съёмка 25 000 ₽; монтаж 15 000 ₽ (складывается инди…","s":"Премиальное \u0027кино\u0027-качество, нестандартные концепции, сильный саунд-дизайн и постпродакшн","conf":"verified","u":"https://hivemonks.orgs.biz/"},{"n":"E-Film studio","t":"studio","c":"Екатеринбург","b":3,"d":"Продакшн полного цикла; событийная видеосъёмка и онлайн-трансляции","p":"Событийная съёмка от 40 000 ₽; онлайн-трансляция от 20 000 ₽","s":"Full-cycle продакшн с упором на сценарии, продакшн и авторский монтаж","conf":"likely","u":"https://e-film.pro/"},{"n":"Студия Щ (Studio Shch)","t":"studio","c":"Новосибирск","b":3,"d":"Съёмка концертов и мероприятий, клипы, имиджевые/корпоративные и авторские фильмы","p":"оценка: ~50 000–200 000 ₽ за концерт/клип","s":"Бутиковая авторская студия (\u0027снимаем с душой, не на потоке\u0027); фестивальные фильмы","conf":"verified","u":"https://studioshch.com/"},{"n":"Lila video","t":"studio","c":"Новосибирск","b":3,"d":"Многокамерная отчётная съёмка мероприятий, онлайн-трансляции, презентационные и художестве…","p":"Отчётное видео (несколько камер) от 20 000 ₽; онлайн-трансляция от 15…","s":"Документальность + художественность, эмоциональный сторителлинг вместо прямой рекламы","conf":"verified","u":"https://lilavideo.ru/"},{"n":"Продюсерская студия «Алиен» (Alien TV)","t":"studio","c":"Казань","b":3,"d":"Онлайн-трансляции спортивных и концертных событий, мультикам-производство, студийные съёмк…","p":"Онлайн-трансляция от 50 000 ₽; полный цикл контента от 100 000 ₽; арен…","s":"Продюсерская студия с уклоном в образовательный/корпоративный и broadcast-контент, адрес:…","conf":"verified","u":"https://alientv.ru/"},{"n":"Video People","t":"studio","c":"Казань","b":3,"d":"Видеосъёмка мероприятий и концертов (в т.ч. многокамерная), рекламные и имиджевые ролики","p":"оценка: ~40 000–150 000 ₽ за событие","s":"Маркетинговый подход (\u0027эффективно, креативно, уникально\u0027), 10+ лет, 300+ проектов","conf":"verified","u":"https://vidpe.ru/"},{"n":"Креативное агентство «Поток» (Potok)","t":"studio","c":"Нижний Новгород","b":3,"d":"Видеопродакшн, съёмка мероприятий/концертов, подкаст-студия, графика 2D/3D, нейросети","p":"оценка: ~50 000–200 000 ₽ за проект","s":"Креативное агентство полного цикла с собственной студией, 8 лет, 93% удержание клиентов","conf":"verified","u":"https://potokprod.ru/"},{"n":"Progressive Group","t":"studio","c":"Краснодар","b":3,"d":"Видеопродакшн полного цикла; съёмка концертов и мероприятий + интернет-трансляции","p":"оценка: ~50 000–300 000 ₽ (съёмка мероприятия + трансляция)","s":"Коммерческий и креативный продакшн: реклама, клипы, документалистика, 3D/CG","conf":"verified","u":"https://pg-prod.ru/"},{"n":"KUKURUZA Production","t":"studio","c":"Ростов-на-Дону","b":3,"d":"Многокамерные шоу/интервью, репортажная съёмка конференций и мероприятий, бизнес-видео","p":"оценка: ~30 000–150 000 ₽ за съёмку мероприятия/шоу","s":"Результат-ориентированный (\u0027видео, которое продаёт\u0027), кейсовый подход с метриками","conf":"verified","u":"https://www.kukuruza-production.ru/"},{"n":"Студия видеографии КУСТ (KUST)","t":"studio","c":"Ростов-на-Дону","b":3,"d":"Многокамерная съёмка мероприятий (корпоративы, выпускные, юбилеи), SDE, event-фильмы","p":"оценка: ~30 000–120 000 ₽ за событие","s":"Документальный event-стиль, форматы SDE (Same Day Edit) и полнометражные фильмы; офисы так…","conf":"verified","u":"https://kust-film.ru/"},{"n":"APRODUCTION","t":"studio","c":"Сочи","b":3,"d":"Видеопродакшн полного цикла, клипы и концерты, организация трансляций и прямых эфиров","p":"Бюджеты проектов из портфолио: до 100 000 ₽ и 300 000–1 000 000 ₽","s":"Крупный игрок с 2009 г., собственный парк из 136 единиц техники, 500+ проектов","conf":"verified","u":"https://aproduction.video/"},{"n":"Arsenal production","t":"studio","c":"Сочи","b":3,"d":"Организация онлайн-трансляций, съёмка концертов и фестивалей, спортивные трансляции","p":"оценка: ~50 000–300 000 ₽ (трансляция + съёмка события)","s":"Broadcast/стриминг-агентство с 2009 г., HD/4K/360°, несколько съёмочных групп по Краснодар…","conf":"verified","u":"https://arsenalproduction.ru/"},{"n":"GS VideoStudio","t":"studio","c":"Сочи","b":3,"d":"Многокамерная FullHD-съёмка шоу/концертов (стедикам, разные ракурсы), трансляции мероприят…","p":"оценка: ~30 000–150 000 ₽ за многокамерную съёмку/трансляцию","s":"Съёмка шоу/концертов с разных ракурсов, подвижная камера \u0027стедикам\u0027, режиссура","conf":"likely","u":"https://gs-videostudio.ru/"},{"n":"Frolov production (Videomaker)","t":"studio","c":"Самара","b":3,"d":"Креативный видеопродакшн, съёмки мероприятий и концертов, реклама, корпоративное видео","p":"оценка: ~40 000–150 000 ₽ за съёмку мероприятия/концерта","s":"Креативная студия, 10+ лет, 500+ проектов; работает в Самаре и Москве","conf":"verified","u":"https://videomaker-russia.ru/"},{"n":"РД СТУДИЯ (RD Studio)","t":"studio","c":"Владивосток","b":3,"d":"Креативный фото/видеопродакшн полного цикла, репортажная и event-съёмка","p":"оценка: ~40 000–150 000 ₽ за event-съёмку","s":"Быстрый результат (\u0027готово за неделю\u0027), аэросъёмка, подводная съёмка, сильный постпродакшн…","conf":"verified","u":"https://xn--d1aam3aggh2h.xn--p1ai/"},{"n":"Студия Дениса Золотова","t":"studio","c":"Санкт-Петербург","b":1,"d":"Профессиональная многокамерная съёмка концертов, театра, мюзиклов и фестивалей + трансляци…","p":"От 4 000 ₽/ч, минимальный заказ 12 000 ₽; проекты 50 000–800 000 ₽","s":"Высококлассный концертный мультикам: 4K, краны до 16 м, цветокоррекция, быстрые тизеры для…","conf":"verified","u":"https://zolotov.studio/"},{"n":"Сергей Евсеев","t":"solo","c":"Москва","b":2,"d":"Соло-видеограф/оператор концертов, лайв-сессий и мероприятий","p":"Смена до 8 ч (1-3 камеры) — 40 000 ₽; 7 000 ₽/час; многокамерное интер…","s":"Чистая яркая картинка, чистый звук с пульта, профессиональный колор; работает с 2005 г.","conf":"verified","u":"https://sergeyevseev.ru"},{"n":"Валерий Егоров","t":"solo","c":"Санкт-Петербург","b":1,"d":"Соло-видеооператор концертов и музыкальных клипов","p":"Съёмка концерта 1 000-5 000 ₽ (в зависимости от длительности); монтаж…","s":"Бюджетная многокамерная концертная съёмка; техника Panasonic LUMIX GH5/G7/G80, Atomos Ninj…","conf":"verified","u":"https://valeriydz.orgs.biz"},{"n":"Евгений Шапошников","t":"solo","c":"Москва","b":2,"d":"Соло оператор-постановщик/режиссёр: клипы, лайв, концертная съёмка","p":"Лайв-видео от 50 000 ₽; режиссёр-оператор от 80 000 ₽/день; клип от 15…","s":"Режиссёр и оператор с техбэкграундом (механик камеры, гаффер, техрежиссёр); клипы, реклама…","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/evgeniy-shaposhnikov"},{"n":"Александр Галич","t":"solo","c":"Москва","b":2,"d":"Соло-видеограф/оператор-постановщик, концертная и лайв-съёмка","p":"Концертная съёмка от 30 000 ₽; лайв-видео от 30 000 ₽; клип от 20 000…","s":"Оператор-постановщик, живые сессии и концерты в клубах","conf":"likely","u":"https://i-m-i.ru/skilled/videomaker/aleksandr-galich"},{"n":"Софья Матюхина","t":"solo","c":"Москва / Санкт-Петербург","b":1,"d":"Соло-видеограф, съёмка отчётов с концертов и лайв-видео","p":"Лайв-видео от 5 000 ₽; клип от 8 000 ₽; сниппет от 5 000 ₽; режиссёр-о…","s":"Репортажная концертная съёмка, отчёты с музыкальных площадок; участница видеокоманды Spbpa…","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/sofya-matyuhina"},{"n":"Арсен Колесник","t":"solo","c":"Москва","b":2,"d":"Соло-видеограф/режиссёр-оператор: клипы, лайв-видео, сниппеты","p":"Лайв-видео 35 000 ₽; клип 35 000 ₽; сниппет 35 000 ₽; режиссёр-операто…","s":"Поп, рэп и хип-хоп; клипы и живые видео","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/arsen-kolesnik"},{"n":"Григорий Сухолуцкий","t":"solo","c":"Москва","b":2,"d":"Соло-видеограф (выпускник операторского ВГИК), лайв и клипы","p":"Лайв-видео 20 000 ₽; клип 100 000 ₽; сниппет 20 000 ₽; режиссёр-операт…","s":"Кинематографичная картинка, электронная сцена; выпускник операторского факультета ВГИК","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/grigoriy-suholutskiy"},{"n":"Виктория Фомина","t":"solo","c":"Москва","b":2,"d":"Соло-фотограф/видеограф концертов и лайв-выступлений","p":"Лайв-видео 15 000 ₽; концертная фотосъёмка 15 000 ₽; клип 30 000 ₽; ст…","s":"Тёмная/альтернативная сцена, фото+видео, бэкстейдж-съёмка","conf":"likely","u":"https://i-m-i.ru/skilled/videomaker/viktoriya-fomina"},{"n":"Андрей Скобочкин","t":"solo","c":"Москва","b":2,"d":"Соло-видеограф/оператор-постановщик, клипы и концерты","p":"Лайв-видео от 10 000 ₽; клип от 50 000 ₽; сниппет от 15 000 ₽; монтаж…","s":"Оператор-постановщик, режиссёр монтажа, колорист; клипы, сниппеты и концерты","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/andrey-skobochkin"},{"n":"Артём Афанасьев","t":"solo","c":"Москва","b":2,"d":"Соло-видеограф/монтажёр, видеоотчёты с концертов и лайв","p":"Лайв-видео 30 000 ₽; клип 60 000 ₽; сниппет 20 000 ₽; монтаж — по прое…","s":"R\u0026B, рэп/хип-хоп, dance, электроника; репортажный лайв","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/artyom-afanasiev"},{"n":"Валентин Клименко","t":"solo","c":"Москва","b":2,"d":"Соло-видеограф, концертные видеоотчёты и музыкальные видео","p":"Лайв-видео от 10 000 ₽; клип от 30 000 ₽; сниппет от 7 500 ₽","s":"Музыкальные видео, сниппеты, графические анонсы, отчёты с выступлений","conf":"verified","u":"https://real-fantasy.ru/music-video"},{"n":"Ная Клеймёнова","t":"solo","c":"Москва","b":2,"d":"Соло-фотограф/видеограф концертов и клипов","p":"Лайв-видео от 5 000 ₽; концертная фотосъёмка 5 000 ₽; клип от 40 000 ₽…","s":"Клипы и концертные записи; училась у режиссёров Тодоровского и Шипенко; основатель коллект…","conf":"verified","u":"https://www.behance.net/047d1f17"},{"n":"Макар Кишкель","t":"solo","c":"Санкт-Петербург","b":1,"d":"Соло-видеограф, видеоотчёты с концертов и лайв-событий","p":"Лайв-съёмка события от 5 000 ₽; клип от 15 000 ₽; сниппет от 7 000 ₽;…","s":"Съёмка и монтаж концертных видеоотчётов, клипы","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/makar-kishkel"},{"n":"Мари Логинова (ЛоМари)","t":"solo","c":"Санкт-Петербург","b":1,"d":"Соло-режиссёр/оператор музыкальных видео и лайв (высокий сегмент)","p":"Лайв-видео 100 000 ₽; клип 500 000 ₽; сниппет 50 000 ₽; режиссёр-опера…","s":"Ротация на Муз-ТВ, Bridge TV, Ru.TV, MTV, Europa Plus; работает под псевдонимом ЛоМари","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/mari-loginova"},{"n":"Яна Шишкина","t":"solo","c":"Санкт-Петербург","b":1,"d":"Соло-режиссёр/оператор клипов и лайв-видео","p":"Лайв-видео от 30 000 ₽; клип от 50 000 ₽; сниппет от 15 000 ₽; режиссё…","s":"Акустические лайв-версии, клипы; полный цикл от концепции до финала","conf":"verified","u":"https://i-m-i.ru/skilled/videomaker/yana-shishkina"},{"n":"On Air (ShowOnAir)","t":"collective","c":"Москва","b":2,"d":"Лайв-сессии — студийные концерты с однотонным фоном и живым звуком (аналог COLORS)","p":"150 000 – 400 000 ₽ за продюсированную лайв-сессию","s":"Минималистичный, однотонный фон, белые микрофоны, укороченный состав, чистый живой звук","conf":"verified","u":"https://vk.com/showonair"},{"n":"«В огне» / Firecat Films","t":"studio","c":"Москва","b":2,"d":"Лайв-сессии + шоу с интервью и бэкстейджем; видеопродакшн полного цикла","p":"250 000 – 700 000 ₽ за продюсированную лайв-сессию/эпизод","s":"Атмосфера + очень высокое качество звука и картинки; интервью, блиц-вопросы; инди/рок-укло…","conf":"verified","u":"https://www.youtube.com/c/FirecatFilms"},{"n":"«Ебемоль»","t":"collective","c":"Санкт-Петербург","b":1,"d":"Лайв-сессии с записью в один дубль, VHS-эстетика","p":"120 000 – 350 000 ₽ за сессию","s":"Запись с первого дубля, сочетание VHS-стилистики и качественной картинки, беседы об эпохе;…","conf":"verified","u":"https://vk.com/ebemol_show"},{"n":"Vs The Radio","t":"collective","c":"Москва","b":2,"d":"Лайв-сессии в формате прямого эфира с минимальным монтажом","p":"120 000 – 300 000 ₽ за сессию","s":"Прямые эфиры, эффект присутствия, беседы между песнями; рок/хип-хоп","conf":"likely","u":"https://vk.com/vstheradio"},{"n":"«Свои»","t":"collective","c":"Москва","b":2,"d":"Лайв-сессии в нестандартных локациях + организация концертов/конкурсов","p":"100 000 – 300 000 ₽ за сессию","s":"Лайвы в гитарном магазине, парке, ММСИ; инди/андеграунд","conf":"likely","u":"https://vk.com/tv.svoi"},{"n":"«17:55»","t":"collective","c":"Москва","b":2,"d":"Лайв-сессии, минималистичный формат без лишнего","p":"100 000 – 250 000 ₽ за сессию","s":"Чистый минимализм, только концерты; поп/хип-хоп/инди","conf":"likely","u":"https://vk.com/17sessions55"},{"n":"Resonant Arts","t":"studio","c":"Москва","b":2,"d":"Многоканальная live-запись + видеосъёмка лайвов (акустика), продюсирование","p":"от 500 000 ₽ за пакет live-видео; аренда вокальной студии 3 500 ₽/час,…","s":"Уютная студия в центре, акустический лайв, подбор сессионных музыкантов, бэкстейдж/интервь…","conf":"verified","u":"https://resonantarts.com/studija_zvukozapisi/zapis-live-v-studii-zvukozapisi/"},{"n":"All Music Studio","t":"studio","c":"Москва","b":2,"d":"Многоканальная live-запись (до 32 каналов) + видеосъёмка live","p":"Live-запись 2 900 ₽/час (каждый 10-й час бесплатно); сведение от 16 00…","s":"Раздельные изолированные комнаты, персональный мониторинг каждому музыканту, парк микрофон…","conf":"verified","u":"https://allmusic-studio.ru/mnogokanalnaya-zapis-live-na-studii-zvukozapisi"},{"n":"Galernaya 20","t":"studio","c":"Санкт-Петербург","b":1,"d":"Live-запись в студии + видео (проект «Live at Galernaya 20»), клипы","p":"Аренда студии от 1 200 ₽/час; съёмка клипа от 50 000 ₽; видео на компо…","s":"Одновременная запись всех музыкантов, живая энергия/эмоция, минимум монтажа; десятилетняя…","conf":"verified","u":"https://galernaya20.com/studio-live"},{"n":"ROOOM STUDIO","t":"studio","c":"Москва","b":2,"d":"Съёмка музыкальных клипов под ключ (в т.ч. концертный/live формат)","p":"Базовый от 10 000 ₽; Средний от 40 000 ₽; Премиум от 100 000 ₽; клип+п…","s":"Пакетный подход от бюджетного до кино-уровня, сценарий/раскадровка/грим/цветокор/тизер; ра…","conf":"verified","u":"https://rooom.studio/uslugi-i-ceni/drugie-uslugi-studii/videosemka-klipa/"},{"n":"Muse Studio (Muse Production)","t":"studio","c":"Москва","b":2,"d":"Музыкальные клипы уровня кино (постановочные, художественные, концертные)","p":"Низкий бюджет от 500 000 ₽; средний от 1 000 000 ₽; высокий от 1 500 0…","s":"«Клипы уровня кино» — оригинальные сценарии, режиссура, полный постпродакшн; постановочные…","conf":"verified","u":"https://musestudio.ru/music_videos/"},{"n":"Kurban Studio","t":"studio","c":"Санкт-Петербург (+ Москва)","b":1,"d":"Видеопродакшн полного цикла: музыкальные клипы, реклама, ивенты","p":"Малый 100 000–200 000 ₽; базовый до 500 000 ₽; полный до 1 000 000 ₽;…","s":"Оригинальный/профессиональный подход, актёры, оригинальная музыка, 3D-анимация в старших п…","conf":"verified","u":"https://kurban.studio/"},{"n":"Brand\u0026Video","t":"studio","c":"Санкт-Петербург (+ Москва)","b":1,"d":"Музыкальные клипы любой сложности (кинематографичные, не просто съёмка группы)","p":"от 70 000 ₽ за видеоролик под ключ (клип — по брифу/смете, скидки сост…","s":"Акцент на оригинальную визуальную концепцию, а не простую съёмку игры в студии; техника RE…","conf":"verified","u":"https://www.brandvideo.ru/music_video.html"},{"n":"PRODUCTION PROD","t":"studio","c":"Москва","b":2,"d":"ТВ-видеопродакшн полного цикла: клипы, концертная съёмка, live-трансляции, шоу","p":"Концертная съёмка от 250 000 ₽; ТВ/YouTube-шоу от 150 000 ₽; live-тран…","s":"ТВ-уровень, большой парк камер и звука, собственный павильон в центре Москвы, команда с те…","conf":"verified","u":"https://productionprod.ru/"},{"n":"Студия «Интервал»","t":"studio","c":"Москва","b":2,"d":"Студия звукозаписи + видеопродакшн: запись, клипы, видеоролики","p":"Клипы от 8 000 ₽; видеоролики от 8 000 ₽; аренда/запись вокала 2 000 ₽…","s":"Творческая студия полного цикла для музстарта, оборудование Neumann/RME; бюджетный вход","conf":"verified","u":"https://studiointerval.ru/uslugi-i-tseny"},{"n":"Like Studios","t":"studio","c":"Москва","b":2,"d":"Многоканальная звукозапись живого выступления коллектива + видеостудия","p":"2 000 – 4 500 ₽/час за аренду студии (сегмент репбаза/запись)","s":"Репетиционная база + видеостудия + студия звукозаписи; работа с профи и любителями, многок…","conf":"likely","u":"https://likestudios.ru/"},{"n":"Refik Anadol / Refik Anadol Studio","t":"studio","c":"Лос-Анджелес","b":4,"d":"видеоарт","p":"$100k – $1M+ за работу; крупные NFT/дата-полотна уходили за миллионы","s":"AI-датаскульптура, генеративные иммерсивные проекции, машинные галлюцинации данных","conf":"verified","u":"https://refikanadol.com/"},{"n":"Pipilotti Rist","t":"solo","c":"Цюрих","b":4,"d":"видеоарт","p":"$150k – $600k+ за видеоинсталляцию; малые экранные работы дешевле","s":"пионер пространственного видеоарта, иммерсивные проекции с насыщенным цветом, чувственные…","conf":"verified","u":"https://pipilottirist.net/"},{"n":"Arthur Jafa","t":"solo","c":"Лос-Анджелес","b":4,"d":"видеоарт","p":"$100k – $500k за видеоработу/эдицию","s":"монтажный видеоколлаж из found footage, ритм и «чёрная эксцеллентность», работа с музыкой","conf":"verified","u":"https://gladstonegallery.com/artist/arthur-jafa/"},{"n":"Ryoji Ikeda","t":"solo","c":"Париж / Киото","b":4,"d":"видеоарт","p":"$60k – $300k за экранную/принт-работу; крупные инсталляции — институци…","s":"аудиовизуальный дата-арт, монохромные datamoshing-паттерны, звук+свет, математика и кванто…","conf":"verified","u":"https://www.ryojiikeda.com/"},{"n":"Doug Aitken","t":"solo","c":"Лос-Анджелес","b":4,"d":"видеоарт","p":"$150k – $700k+ за мультиэкранную инсталляцию","s":"полимедийные нарративные видеоинсталляции, свет и звук, ландшафт и урбанизм, иммерсивность…","conf":"verified","u":"https://www.regenprojects.com/artists/doug-aitken"},{"n":"Hito Steyerl","t":"solo","c":"Берлин","b":4,"d":"видеоарт","p":"$80k – $350k за видеоинсталляцию/эдицию","s":"эссеистичное видео, критика медиа/ИИ/цифрового труда, спатиальные инсталляции, документаль…","conf":"verified","u":"https://www.hitosteyerl.net/"},{"n":"Sir Isaac Julien","t":"solo","c":"Лондон","b":4,"d":"видеоарт","p":"$250k – $1M за многоэкранную инсталляцию","s":"поэтичные мультиэкранные киноинсталляции, диаспора и колониальные истории, кинематографиче…","conf":"verified","u":"https://www.isaacjulien.com/"},{"n":"Sir John Akomfrah","t":"solo","c":"Лондон","b":4,"d":"видеоарт","p":"$150k – $600k за мультиканальную видеоинсталляцию","s":"многоэкранные видеоинсталляции-«канто», архивный монтаж, миграция, климат, колониальное на…","conf":"verified","u":"https://www.lissongallery.com/artists/john-akomfrah"},{"n":"Ian Cheng","t":"solo","c":"Нью-Йорк","b":4,"d":"видеоарт","p":"$100k – $400k за живую симуляцию/эдицию","s":"«живые симуляции» — самоэволюционирующие виртуальные экосистемы на движках, ИИ-агенты, ген…","conf":"verified","u":"https://www.pilarcorrias.com/artists/39-ian-cheng/"},{"n":"Jeremy Shaw","t":"solo","c":"Берлин","b":4,"d":"видеоарт","p":"$40k – $180k за видеоработу/эдицию","s":"пост-документальное видео об изменённых состояниях сознания, псевдонаучная эстетика, verit…","conf":"verified","u":"https://www.koeniggalerie.com/collections/jeremy-shaw"},{"n":"Cao Fei","t":"solo","c":"Пекин","b":4,"d":"видеоарт","p":"$100k – $500k за видео/мультимедиа-инсталляцию","s":"видео, digital media, VR/игровые миры об урбанизации и цифровизации Китая, футуристичные с…","conf":"verified","u":"https://spruethmagers.com/artists/cao-fei/"},{"n":"Wu Tsang","t":"solo","c":"Берлин","b":4,"d":"видеоарт","p":"$50k – $250k за видеоработу/инсталляцию","s":"кино+перформанс, скрытые истории и маргинальные нарративы, квир-оптика, документальность с…","conf":"verified","u":"http://antenna-space.com/en/artists/wu_wu-tsang/"},{"n":"Ed Atkins","t":"solo","c":"Копенгаген","b":4,"d":"видеоарт","p":"$60k – $250k за CGI-видеоэдицию","s":"компьютерная 3D-анимация, цифровые аватары-суррогаты, интимность/смерть, разрыв между цифр…","conf":"verified","u":"https://cabinet.uk.com/ed-atkins"},{"n":"Sin Wai Kin","t":"solo","c":"Лондон","b":4,"d":"видеоарт","p":"$15k – $70k за видеоработу/эдицию (растущий рынок)","s":"moving image + дрэг-перформанс, сторителлинг об идентичности между бинарностями, кинематог…","conf":"verified","u":"https://blindspotgallery.com/artist/sin-wai-kin/"},{"n":"Anri Sala","t":"solo","c":"Берлин","b":4,"d":"видеоарт","p":"$150k – $600k за видео/звуковую инсталляцию","s":"видео и звуковые инсталляции о нарративе, языке и музыке; синхронизация изображения и звук…","conf":"verified","u":"https://www.mariangoodman.com/artists/60-anri-sala/"},{"n":"Cyprien Gaillard","t":"solo","c":"Берлин / Париж","b":4,"d":"видеоарт","p":"$100k – $500k за фильм/видеоработу","s":"стереоскопическое/35-мм кино и видео, руины, урбанистика, энтропия и историческая память","conf":"verified","u":"https://spruethmagers.com/artists/cyprien-gaillard/"},{"n":"Sondra Perry","t":"solo","c":"Нью-Джерси / Нью-Йорк","b":4,"d":"видеоарт","p":"$30k – $120k за видео/цифровую инсталляцию","s":"видео, компьютерные медиа, 3D-анимация и инсталляция о чёрной идентичности, технологиях и…","conf":"verified","u":"https://www.bridgetdonahue.nyc/artists/perry-sondra/"},{"n":"Tabita Rezaire","t":"solo","c":"Каю (Cayenne)","b":4,"d":"видеоарт","p":"$20k – $90k за видеоработу/эдицию","s":"цифровое видео на стыке технологий, духовности и деколониального исцеления; сетевые науки…","conf":"verified","u":"https://goodman-gallery.com/artists/tabita-rezaire"},{"n":"teamLab","t":"collective","c":"Токио","b":4,"d":"медиаарт","p":"Постоянные музеи-инсталляции: миллионы USD; отдельные заказные работы…","s":"Иммерсивный \u0027borderless\u0027 цифровой мир, интерактивные проекции природы, живые генеративные…","conf":"verified","u":"https://www.teamlab.art/"},{"n":"Moment Factory","t":"studio","c":"Монреаль","b":4,"d":"медиаарт","p":"Крупные мультимедиа-шоу: $500k – несколько $M","s":"Иммерсивные среды на стыке видео, света, архитектуры, анимации и звука; проекционные мэппи…","conf":"verified","u":"https://momentfactory.com/"},{"n":"Refik Anadol Studio","t":"studio","c":"Лос-Анджелес","b":4,"d":"медиаарт","p":"Крупные data-скульптуры/заказы: шести–семизначные суммы USD; эдишены и…","s":"AI и \u0027эстетика данных\u0027: генеративные data-скульптуры и data-painting, машинный интеллект,…","conf":"verified","u":"https://refikanadol.com/"},{"n":"United Visual Artists (UVA)","t":"studio","c":"Лондон","b":4,"d":"медиаарт","p":"Галерейные инсталляции / комиссии: ~$100k – $1M","s":"Свет, звук и движение как события во времени; скульптурные и site-specific световые инстал…","conf":"verified","u":"https://www.uva.co.uk/"},{"n":"Random International","t":"collective","c":"Лондон / Берлин","b":4,"d":"медиаарт","p":"Постоянная \u0027Rain Room\u0027 — многомиллионная институция; галерейные работы…","s":"Интерактивные поведенческие инсталляции, исследующие восприятие и отношения человека с авт…","conf":"verified","u":"https://www.random-international.com/"},{"n":"Ouchhh Studio","t":"studio","c":"Стамбул","b":4,"d":"медиаарт","p":"AV-фасады и public art комиссии: ~$100k – $1M+","s":"\u0027Данные как краска, алгоритм как кисть\u0027: AI и data-driven public art, data-painting/скульп…","conf":"verified","u":"https://ouchhh.tv/"},{"n":"Marshmallow Laser Feast (MLF)","t":"collective","c":"Лондон","b":4,"d":"медиаарт","p":"Иммерсивные / XR-постановки: ~$200k – $1M+","s":"Иммерсивные VR/XR и мультиэкранные опыты о природе и восприятии; экологические, сенсорные…","conf":"verified","u":"https://marshmallowlaserfeast.com/"},{"n":"NONOTAK Studio","t":"collective","c":"Париж","b":4,"d":"медиаарт","p":"AV-инсталляции / перформансы: ~€30k – €200k","s":"Минималистичные аудиовизуальные \u0027световые архитектуры\u0027; свет + звук + пространство, дримла…","conf":"verified","u":"https://www.nonotak.com/"},{"n":"Rafael Lozano-Hemmer / Antimodular Studio","t":"studio","c":"Монреаль","b":4,"d":"медиаарт","p":"Интерактивные работы через галереи, эдишены: ~$50k – $500k+","s":"Интерактивные партисипаторные инсталляции с роботизированным светом, сенсорами, био-данным…","conf":"verified","u":"https://www.lozano-hemmer.com/"},{"n":"Universal Everything","t":"studio","c":"Шеффилд / Лондон","b":4,"d":"медиаарт","p":"Экранные артворки / комиссии: ~$50k – $500k","s":"Генеративное движущееся изображение на грани абстрактного и фигуративного; симуляции, moti…","conf":"verified","u":"https://www.universaleverything.com/"},{"n":"ART+COM Studios","t":"studio","c":"Берлин","b":4,"d":"медиаарт","p":"Музейные медиа-инсталляции: крупные заказы от high six-figure+ USD/EUR","s":"Кинетические скульптуры, медиа-архитектура, интерактивные инсталляции в аналоговом и цифро…","conf":"verified","u":"https://artcom.de/en/"},{"n":"59 Productions (59 Studio)","t":"studio","c":"Лондон / Нью-Йорк","b":4,"d":"медиаарт","p":"Проекционный дизайн / крупные шоу: ~$200k – многомиллионные бюджеты","s":"Проекционный дизайн и масштабные story-driven иммерсивные инсталляции; архитектура + анима…","conf":"verified","u":"https://59.studio/"},{"n":"Studio Drift","t":"studio","c":"Амстердам","b":4,"d":"медиаарт","p":"Кинетические скульптуры через Carpenters Workshop Gallery: шести–семиз…","s":"Кинетические скульптуры и перформансы на стыке природы и технологии; рои дронов, свет, мех…","conf":"verified","u":"https://studiodrift.com/"},{"n":"TUNDRA","t":"collective","c":"Санкт-Петербург","b":1,"d":"медиаарт","p":"AV-инсталляции / перформансы: ~$30k – $200k","s":"Синестетические аудиовизуальные инсталляции и перформансы: взаимодействие звука, света, пр…","conf":"verified","u":"https://wearetundra.org/"},{"n":"Nohlab","t":"studio","c":"Стамбул","b":4,"d":"медиаарт","p":"Иммерсивные комиссии: ~$50k – $400k","s":"Междисциплинарные иммерсивные опыты и spatial storytelling; аудиовизуальные инсталляции на…","conf":"verified","u":"https://nohlab.com/"},{"n":"onformative","t":"studio","c":"Берлин","b":4,"d":"медиаарт","p":"Генеративные инсталляции / комиссии: ~$50k – $400k","s":"Генеративный дизайн, data-driven артворки, интерактивные инсталляции, real-time и machine-…","conf":"verified","u":"https://onformative.com/"},{"n":"Superbien","t":"studio","c":"Париж / Нью-Йорк","b":4,"d":"медиаарт","p":"Иммерсивные AV-постановки: ~$100k – $1M","s":"Motion-driven иммерсивные визуальные опыты; сторителлинг + дизайн + технологии, XR, проекц…","conf":"verified","u":"https://www.superbien.studio/"},{"n":"Playmodes Studio","t":"collective","c":"Барселона","b":4,"d":"медиаарт","p":"Light-art / проекционные инсталляции: ~€30k – €250k","s":"Аудиовизуальное исследование связи звука и изображения (единый поток данных генерирует и з…","conf":"verified","u":"https://www.playmodes.com/"},{"n":"PrimaStudio (Прима Студия)","t":"studio","c":"Москва","b":2,"d":"Многокамерная художественная видеосъёмка и видеоверсии спектаклей, монтаж, трансляции","p":"оценка: ~4 000–8 000 ₽/час (мультикамера); видеоверсия спектакля от ~1…","s":"Классическая ТВ-качества многокамерная театральная документация с элементами режиссуры и п…","conf":"verified","u":"https://www.primastudio.ru"},{"n":"ТеатровИдение","t":"collective","c":"Москва","b":2,"d":"Профессионализация театрального видео: видеоверсии спектаклей, онлайн-трансляции, стандарт…","p":"n/d — некоммерческий отраслевой проект","s":"Отраслевой подход к художественной видеодокументации театра — стандарты, наставничество, о…","conf":"verified","u":"https://teatrovidenie.ru"},{"n":"Студия Дениса Золотова (Zolotov Studio)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Онлайн-трансляции и многокамерная видеосъёмка спектаклей, концертов и культурных событий","p":"оценка: тарифы на отдельной странице сайта; ориентир рынка СПб","s":"Трансляционно-документальная съёмка событий, студия с хромакеем, полный цикл прод./постпро…","conf":"verified","u":"https://zolotov.studio"},{"n":"Stage Russia HD","t":"studio","c":"Москва","b":2,"d":"Кинематографичная 6-камерная съёмка российских спектаклей для кинопоказа и онлайн (с субти…","p":"оценка: доступ через кинопоказы и онлайн-аренду; продакшн-бюджеты не п…","s":"Многокамерная фиксация с живой публикой, монтаж под большой экран, кураторский отбор поста…","conf":"verified","u":"https://www.stagerussia.com"},{"n":"Nel Shelby Productions","t":"studio","c":"Нью-Йорк","b":4,"d":"Видеосъёмка и монтаж танца/перформанса: live-мультикамера, танцевальные фильмы, промо, арх…","p":"оценка: ~$1 500–5 000+ за многокамерную съёмку спектакля","s":"Кинематографичный документальный стиль с уважением к хореографии, фестивальная съёмка","conf":"verified","u":"https://www.nelshelby.com"},{"n":"Christopher Duggan","t":"solo","c":"Нью-Йорк / Беркширы (Масса…","b":4,"d":"Художественная фотодокументация танца/перформанса + видеосъёмка (в связке с Nel Shelby Pro…","p":"оценка: индивидуальные коммиссии, цена по запросу","s":"Динамичная сценическая фотография движения, публикации в NYT, Dance Magazine, Pointe","conf":"verified","u":"https://christopherduggan.com/dance/"},{"n":"Manuel Vason","t":"solo","c":"Лондон","b":4,"d":"Коллаборативная фото/видео-документация перформанс-арта (перформанс как фотография)","p":"оценка: арт-коммиссии и принты, цена по запросу","s":"Авторская фотография как со-перформанс, тесная коллаборация с художником в кадре","conf":"verified","u":"https://www.manuelvason.com"},{"n":"Adam Nightingale Films","t":"solo","c":"Лондон","b":4,"d":"Театральная видеосъёмка: полнометражный архив, трейлеры, съёмка репетиций (муз. театр, Wes…","p":"оценка: ~£400–1 500 за постановку","s":"Многокамерная съёмка с профессиональным звуком, бережная к постановке","conf":"verified","u":"https://adamnightingale.com"},{"n":"Digital Theatre / Digital Theatre+","t":"studio","c":"Лондон","b":4,"d":"Оригинальные live-capture киноверсии спектаклей (мультикамера с дистанц. управлением) + об…","p":"оценка: потреб. стриминг-подписка / институциональная лицензия Digital…","s":"Динамичная киносъёмка сцены несколькими дистанционными HD-камерами","conf":"verified","u":"https://www.digitaltheatre.com"},{"n":"FilmFolk","t":"studio","c":"Лондон (по всей UK)","b":4,"d":"Сценическая и театральная видеосъёмка (1–мультикамера): полные записи, хайлайты, backstage","p":"£99/час (первый час £249); монтаж £49/час; свет +£99/день; доп. статич…","s":"Доступная профессиональная многокамерная документация, доставка за 48 часов, страховка £10…","conf":"verified","u":"https://www.filmfolk.com/services/theatre-videography"},{"n":"Dances With Tech","t":"studio","c":"Финикс (Аризона)","b":4,"d":"Документация перформанса/танца: 2-камерная съёмка (wide + tracking), танцевальные фильмы,…","p":"оценка: цена по запросу (счета через Bonsai)","s":"Ценностный, культурно-чуткий подход, съёмка с уважением к хореографии и истории работы","conf":"verified","u":"https://www.danceswithtech.com"},{"n":"On the Boards (OntheBoards.tv)","t":"collective","c":"Сиэтл","b":4,"d":"HD-съёмка и архив полнометражных современных перформансов (танец/театр/эксперимент) проф.…","p":"оценка: потреб. аренда/покупка/подписка на фильмы; продакшн — некоммер…","s":"Кинематографичная фиксация современного перформанса; архив уникальных, часто больше не иду…","conf":"verified","u":"https://www.ontheboards.tv"},{"n":"Maria Baranova (Мария Баранова)","t":"solo","c":"Нью-Йорк","b":4,"d":"Художественная фотодокументация экспериментального театра и танца (промо, dress rehearsals…","p":"оценка: коммиссии/съёмка по запросу","s":"Резонансная фиксация движения на off-off/off-Broadway сцене, ясность и эмоция кадра","conf":"verified","u":"https://www.mariabaranova.com"},{"n":"Stagescreen","t":"studio","c":"Бристоль","b":4,"d":"Захват живого театра для кино/ТВ/стриминга (мюзиклы, драма), трейлеры, полные киноверсии","p":"оценка: высокобюджетный продакшн, цена по запросу","s":"Награждённая кинематографичная адаптация сцены для экрана без потери энергии постановки","conf":"verified","u":"https://stagescreen.tv"},{"n":"National Theatre Live (NT Live)","t":"studio","c":"Лондон","b":4,"d":"Прямые кинотрансляции и филмирование спектаклей Национального театра (6–12 камер, краны/тр…","p":"оценка: потребитель — билет в кино (~£15–20); продакшн-бюджеты не публ…","s":"Верная театральной эстетике мультикамерная фиксация с киноинтимностью (проект с 2009)","conf":"verified","u":"https://www.ntlive.com"},{"n":"MPD Video Productions","t":"studio","c":"Уитинсвилл (Массачусетс)","b":4,"d":"Многокамерная видеосъёмка танца и театра (recitals, спектакли), 15+ лет опыта","p":"оценка: пакеты dance recital ~$1 000–3 000","s":"Аккуратная многокамерная фиксация всех исполнителей и хореографии, посещение тех-репетиций","conf":"verified","u":"https://mpdvideoproductions.com/dance-and-theater"},{"n":"NEP Group","t":"studio","c":"Pittsburgh, PA (HQ)","b":4,"d":"OB-траки и вещательный мультикам для мировых туров, стадионных концертов и фестивалей","p":"$50,000-$300,000+ за шоу-день (OB-трак + камеры + бригада)","s":"Broadcast-grade мультикам, IMAG, крупные форматы, IP-инфраструктура, remote-production хаб…","conf":"verified","u":"https://www.nepgroup.com"},{"n":"Gravity Media (ранее EMG)","t":"studio","c":"London (HQ)","b":4,"d":"Международное вещательное мультикам-покрытие концертов, фестивалей, гала и церемоний","p":"$40,000-$250,000+ за шоу-день (OB-трак + камеры + крю)","s":"Кинематографичный мультикам: film-камеры у сцены, OB-длиннофокусы, steadicam в зале, flyca…","conf":"verified","u":"https://www.gravitymedia.com"},{"n":"Game Creek Video","t":"studio","c":"Hudson, NH","b":4,"d":"OB мобильные юниты (траки) для концертов, награждений и крупных live-трансляций","p":"$40,000-$200,000+ за шоу-день (трак 53\u0027 expando + бригада)","s":"Self-contained OB-траки высокого класса, Riedel-интерком, крупноформатные live-продакшны","conf":"verified","u":"https://www.gamecreekvideo.com"},{"n":"AMP Visual TV","t":"studio","c":"Gennevilliers (Париж)","b":4,"d":"OB / ТВ-покрытие концертов и live-программ, мультиплекс по нескольким городам","p":"€30,000-€200,000+ за шоу-день (OB-ван + камеры + крю)","s":"Премиальная ТВ-съёмка, EVS VIA, мультивен/мультисити live","conf":"verified","u":"https://www.ampvisualtv.tv"},{"n":"Solotech","t":"studio","c":"Montreal","b":4,"d":"Гастрольный видео/камерный и LED-продакшн для мировых туров, live-camera и IMAG","p":"$50,000-$300,000+ в неделю (гастрольный видеопакет); тур-лег ~$0.5-5M","s":"Стадионные LED-стены, arena-mapping, KAIROS/PTZ + 4K CINELIVE камеры, интеграция контента…","conf":"verified","u":"https://www.solotech.com"},{"n":"PRG (Production Resource Group)","t":"studio","c":"Secaucus, NJ (US HQ)","b":4,"d":"Гастрольные камерные системы (35LIVE) и вещательный продакшн концертов","p":"$75,000-$500,000+ за шоу (35LIVE камерный пакет); крупный тур — мульти…","s":"35LIVE big-screen кинематографический live-look, PPU/flypack, интеграция LED и проекции","conf":"verified","u":"https://www.prg.com"},{"n":"NOMOBO","t":"studio","c":"Amsterdam","b":4,"d":"Remote/REMI мультикам-продакшн: удалённая режиссура, микс и графика из Амстердама","p":"$15,000-$100,000+ за продакшн (REMI, зависит от масштаба)","s":"Remote-production 4K мультикам anywhere, минимальная бригада на площадке + удалённая аппар…","conf":"verified","u":"https://www.nomobo.tv"},{"n":"Silent House (Silent House Productions, часть TAIT)","t":"studio","c":"Burbank, CA","b":4,"d":"Креатив-дизайн шоу + broadcast/концертное кино (вещательное направление тура)","p":"$1M-$10M+ за тур (креатив+постановка); broadcast/film — по проекту","s":"Художественная концепция и визуальный каркас шоу, затем подбор техпартнёров; broadcast и к…","conf":"verified","u":"https://silent-house.com"},{"n":"Fuse Technical Group","t":"studio","c":"Los Angeles / Nashville /…","b":4,"d":"Гастрольные камерные системы, кастомные flypack\u0027и, LED и live-видеопродакшн","p":"$30,000-$200,000+ в неделю (гастрольный camera+LED пакет)","s":"LED-волюмы + гастрольный flypack, media-server driven, camera crew + видеорежиссёр","conf":"verified","u":"https://fuse-tg.com"},{"n":"Hibino Corporation","t":"studio","c":"Tokyo","b":4,"d":"Концертное видео, LED и live-продакшн для японских и международных артистов","p":"$50,000-$300,000+ за шоу (видео/LED+операторы, оценка)","s":"Chromatek LED, Immersive/Passive 3D LED, image-control, in-camera VFX студии","conf":"verified","u":"https://www.hibino.co.jp/english/"},{"n":"Timeline Television","t":"studio","c":"London","b":4,"d":"UHD/IP HDR OB-траки и мультикам для live-музыки и наградных шоу","p":"£25,000-£150,000+ за шоу-день (OB-трак + бригада)","s":"Крупномасштабный IP UHD HDR мультикам, RF-камеры, flyaway-решения","conf":"verified","u":"https://www.timeline.tv"},{"n":"Creative Technology (CT Group, часть NEP)","t":"studio","c":"Crawley (UK HQ) / worldwid…","b":4,"d":"Гастрольные камерные системы, flypack\u0027и, hi-res switching и LED для туров/фестивалей","p":"$40,000-$300,000+ за шоу (гастрольный camera/flypack + LED)","s":"Camera systems + flypacks + LED-экраны/проекция, road-worthy тур-решения (совместно со Scr…","conf":"verified","u":"https://ct-group.com"},{"n":"Veeps (Live Nation)","t":"studio","c":"Los Angeles","b":4,"d":"Концертный livestream-продакшн и дистрибуция (PPV/подписка), оснащение площадок","p":"Модель платформы (доля с PPV-билетов/подписка), фикс-прайса нет","s":"Turnkey venue-livestream + PPV-платформа, Veeps All Access подписка, TV/mobile-приложения","conf":"verified","u":"https://veeps.com"},{"n":"Moment Factory","t":"studio","c":"Montreal","b":4,"d":"Мультимедийная постановка концертов: видео/контент, show-direction, дизайн визуалов","p":"$1M-$10M+ за тур/шоу (дизайн + продакшн контента)","s":"Immersive video+sound+lighting+SFX, larger-than-life визуалы, show-direction","conf":"verified","u":"https://momentfactory.com"},{"n":"Driift","t":"studio","c":"London","b":4,"d":"Продакшн ливстрим-концертов и PPV-событий с фирменной кино-эстетикой","p":"$50,000-$250,000+ за ливстрим-событие (продакшн); PPV-билеты","s":"Фирменная \u0027live films\u0027 эстетика — яркая, кинематографичная, тщательно срежиссированная","conf":"verified","u":"https://driift.live"},{"n":"LMG Touring (LMG)","t":"studio","c":"Orlando, FL","b":4,"d":"Гастрольный видео/камерный продакшн, ливстримы и cinema-style съёмка туров","p":"$25,000-$200,000+ в неделю (гастрольный видео+ливстрим пакет)","s":"Touring video + camera + livestream, LED и virtual production","conf":"verified","u":"https://lmgtouring.net"},{"n":"Студия Дениса Золотова (zolotov.studio) — съёмка концерта от 4 000 ₽/час (мин. заказ 12 000 ₽)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная концертная/театральная съёмка, монтаж, онлайн-трансляции","p":"Съёмка концерта от 4 000 ₽/час (мин. заказ 12 000 ₽); многокамерный мо…","s":"Полный цикл, аккуратный монтаж концертов/спектаклей","conf":"verified","u":"https://zolotov.studio/videosemka-koncertov"},{"n":"АПИК Студия (videoagent.ru) — пакеты 12 000 / 30 000 / 45 000 ₽ (1 / 2 / 3 камеры)","t":"studio","c":"Москва","b":2,"d":"Концертная многокамерная съёмка и монтаж, event","p":"Классический 12 000 ₽ (1 камера, до 2 ч); Бизнес 30 000 ₽ (2 камеры, д…","s":"Бюджетно-средний сегмент, камерные концерты и залы","conf":"verified","u":"https://videoagent.ru/work/videosemka-koncertov"},{"n":"Breeze Media Group (СПб) — многокамерка 14–41 тыс ₽ (2–5 камер), с ПТС 28–76 тыс ₽","t":"studio","c":"Санкт-Петербург","b":1,"d":"Многокамерная съёмка и ПТС-трансляция концертов/мероприятий","p":"Без ПТС (до 3 ч): 2 кам 14 000, 3 кам 23 000, 4 кам 32 000, 5 кам 41 0…","s":"Гибкая многокамерка Full HD, ТВ-подача","conf":"verified","u":"https://breezemg.com/stoimost-mnogokamernaya-videosyomka/"},{"n":"VStream Production — 1 кам от 20 000 ₽, 2 кам от 55 000 ₽, 3 кам от 108 000 ₽","t":"studio","c":"Москва (+ регионы РФ)","b":2,"d":"Многокамерная концертная съёмка со звуком с пульта, монтаж, клипы","p":"1 камера от 20 000 ₽ (оператор, 1 микрофон, накамерный свет, FullHD/4K…","s":"Концерт-съёмка с ТВ-графикой, средне-высокий сегмент","conf":"verified","u":"https://videostream.su/services/videosemka-konczerta/"},{"n":"PROFVIDEO — пакеты 240 000 / 500 000 / 900 000 ₽ (2–3 / 4–6 / 8+ камер + трансляция)","t":"studio","c":"Москва","b":2,"d":"Многокамерная съёмка и онлайн-трансляция концертов, ПТС, FOH-звук","p":"Базовый от 240 000 ₽ (2–3 камеры, режиссура, трансляция на 1–2 платфор…","s":"Крупные концерты и трансляции, уровень ПТС/телестудии","conf":"verified","u":"https://profvideo.ru/translyacziya-i-semka-konczerta/"},{"n":"Los\u0027films (losfilms.ru) — пакеты 200 000 / 300 000 / 500 000 ₽ (2 / 3 / 4 оператора)","t":"studio","c":"Москва","b":2,"d":"Кинематографичная концертная съёмка: концерт-фильм и клип","p":"Базовый от 200 000 ₽ (2 оператора, свет, монтаж фильма); Расширенный о…","s":"Премиальный концерт-фильм, кинематографичный монтаж","conf":"verified","u":"https://losfilms.ru/videosemka-konczerta"},{"n":"Obscura Production (obscura.pro) — пакеты 50 000 / 70 000 / 100 000 ₽ (1 / 1 / 2 камеры)","t":"studio","c":"Москва","b":2,"d":"Съёмка концертов и фестивалей, монтаж, фото","p":"Бюджет 50 000 ₽ (1 камера, монтаж до 2 мин); Оптимальный 70 000 ₽ (1 к…","s":"Концерты/фестивали, клиповый монтаж","conf":"verified","u":"https://obscura.pro/organizaciya-videosemki-koncerta"},{"n":"PrimaStudio (primastudio.ru) — почасовая съёмка 3 000 / 4 000 / 5 000 ₽ (Эконом / FullHD / 4K), концерт от 5 000 ₽","t":"studio","c":"Москва","b":2,"d":"Съёмка концертов и спектаклей (до 7 камер Sony PXW-Z90), монтаж","p":"Почасовая съёмка: Эконом 3 000, Full HD 4 000, 4K 5 000 ₽/час (мин. 2…","s":"Универсальный продакшн среднего сегмента","conf":"verified","u":"https://www.primastudio.ru/price.html"},{"n":"Creativ-Lab (СПб) — концертная многокамерка от 20 000 ₽ (2 оператора, 3–5 камер, 2–3 ч)","t":"studio","c":"Санкт-Петербург","b":1,"d":"Видеосъёмка и монтаж, многокамерная съёмка концертов","p":"Оператор 3 000 ₽/1 ч, 6 000 ₽/3 ч, 10 000 ₽/5–7 ч. Многокамерная съёмк…","s":"Средний сегмент, съёмка+монтаж","conf":"verified","u":"https://creativ-lab.com/ceny-na-videosemku-i-videomontazh/"},{"n":"СтудияМонтажа.рф — оператор 3 000 ₽/час, оператор-монтажёр 12 000 ₽/12 ч; монтаж 1 750 ₽/час или 12 500 ₽/смену","t":"studio","c":"Москва","b":2,"d":"Видеосъёмка и видеомонтаж (в т.ч. многокамерный) с присутствием заказчика","p":"Оператор на выезд от 3 000 ₽/час; оператор-монтажёр на смену 12 ч от 1…","s":"Гибкий монтаж (студия / онлайн / выезд), обучение","conf":"verified","u":"https://studiyamontazha.ru/videosiemka-cena-stoimost"},{"n":"ProStudio.net — монтаж от 500 ₽/мин, многокамерный монтаж от 20 000 ₽/проект, монтаж трансляций 10 000–15 000 ₽/час","t":"studio","c":"Москва (+ СПб)","b":1,"d":"Видеомонтаж и постпродакшн (многокамерный, трансляции, графика)","p":"Монтаж от 500 ₽/мин (нарезка/склейка); художественный цветокор от 1 50…","s":"Постпродакшн-специализация, широкий спектр монтажа","conf":"verified","u":"https://prostudio.net/uslugi-videomontazha"},{"n":"DIKO STUDIO — оператор от 7 000 ₽, многокамерная от 15 000 ₽, монтаж от 15 000 ₽, цветокор от 10 000 ₽","t":"studio","c":"Москва","b":2,"d":"Видеосъёмка мероприятий, многокамерная съёмка, монтаж","p":"Услуги оператора от 7 000 ₽; многокамерная съёмка от 15 000 ₽; съёмка…","s":"Event/репортаж, средний сегмент","conf":"verified","u":"https://videoproduction-moskva.ru/services/videosemka-meropriyatiy/"},{"n":"PREVIDEO (premium-video.ru) — 1 камера 11 000 ₽/смена (8 ч), многокамерная 3 000–3 600 ₽/час","t":"studio","c":"Москва","b":2,"d":"Видеосъёмка (одно- и многокамерная), монтаж","p":"Однокамерная съёмка 1 500 ₽/час, смена 8 ч 11 000 ₽; многокамерная 3 0…","s":"Бюджетный сегмент, прозрачные почасовые/сменные ставки","conf":"verified","u":"http://www.premium-video.ru/tseni_semka-s.htm"},{"n":"Profi.ru (биржа) — видеооператор от 3 000 ₽/час (бенчмарк ставок Москвы, 2026)","t":"solo","c":"Москва","b":2,"d":"Агрегатор частных видеооператоров (бенчмарк рыночных ставок)","p":"Ставка видеооператора от 3 000 ₽/час (опубликованная нижняя граница би…","s":"Фриланс-рынок, разброс по опыту и оборудованию","conf":"verified","u":"https://profi.ru/krasota/photographer/videooperator/price/"},{"n":"YouDo (биржа) — съёмка концерта от 2 700 ₽ (нижняя граница фриланс-заказов)","t":"solo","c":"Москва","b":2,"d":"Биржа исполнителей (бенчмарк нижних цен на съёмку концерта)","p":"Съёмка концерта от 2 700 ₽ (минимальные однокамерные подработки). Реал…","s":"Фриланс-рынок, нижний ценовой предел","conf":"verified","u":"https://youdo.com/foto-i-video/video/event/concert"},{"n":"Видеоника (videonika.ru) — концертная съёмка до 8 ч + монтаж, цена по смете (~30–60 тыс ₽, оценка)","t":"studio","c":"Москва / Раменское (МО)","b":2,"d":"Съёмка мероприятий/концертов, монтаж отчётного клипа, озвучка","p":"Публичного прайса на странице нет — смета по запросу. Рыночная оценка…","s":"Event/репортаж + монтаж с озвучкой и графикой","conf":"likely","u":"https://videonika.ru/uslugi/videosemka-meroprijatij/koncerti"},{"n":"Thomas Blanchard","t":"solo","c":"Лион","b":4,"d":"видеоарт / макро-кинематография (жидкости, краска, масло)","p":"коммерческий проект/инсталляция ~$8k–$60k+; лицензия стока за клип ~$3…","s":"«визуальная алхимия»: краска, масло, молоко, мёд в макро; насыщенные жидкостные абстракции…","conf":"verified","u":"https://thomas-blanchard.com/"},{"n":"Roman De Giuli (Terracollage)","t":"solo","c":"Нюрнберг","b":4,"d":"видеоарт / 8K макро-кинематография (жидкости, пигменты на бумаге)","p":"лицензия футажа через Filmsupply ~$400–$1500/клип; коммишн-реклама дес…","s":"жидкости, порошки, чернила на бумаге в огромном макро-масштабе; 8K/HDR, практические эффек…","conf":"verified","u":"https://www.terracollage.com/"},{"n":"Susi Sie","t":"solo","c":"Цюрих (ранее Берлин)","b":4,"d":"видеоарт / аналоговая макро-кинематография","p":"хай-энд коммерческая режиссура: проект ~$50k–$300k+","s":"только реальные вещества и материя, никакого CGI; макро-«движущиеся картины», сюрреалистич…","conf":"verified","u":"https://www.susisie.de/"},{"n":"Roman Hill","t":"solo","c":"Париж","b":4,"d":"видеоарт / макро- и микроскопная кинематография света","p":"арт-коммишн/фестивальные заказы и кинопроизводство: проект ~$20k–$150k…","s":"иммерсивные макромиры из физических явлений и химреакций, биолюминесценция, 8K–12K, «танец…","conf":"verified","u":"https://www.romanhill.fr/"},{"n":"Ben Ouaniche (Macro Room)","t":"studio","c":"Тель-Авив","b":4,"d":"макро-кинематография / экспериментальные практические эффекты, slow-mo","p":"коммерческий продакшн: проект ~$10k–$80k (оценка)","s":"extreme-макро повседневных объектов, растворение/таймлапс, высокоскоростная съёмка, in-cam…","conf":"verified","u":"https://macroroom.com/"},{"n":"Kim Pimmel","t":"solo","c":"Сан-Франциско","b":4,"d":"видеоарт / макро-таймлапс (феррожидкость, мыльные плёнки)","p":"арт-проекты/коллаборации; коммерческие ставки не публикуются","s":"феррожидкость + мыльные пузыри в макро, магнетизм и капиллярность, гипнотический абстрактн…","conf":"verified","u":"https://www.kimpimmel.com/"},{"n":"Yan Liang (Beauty of Science / Envisioning Chemistry)","t":"studio","c":"Хэфэй","b":4,"d":"макро/микро научная кинематография, high-speed, инфракрасная съёмка","p":"коммишн научной визуализации/образовательные продукты; ставки не публи…","s":"красота химических реакций в 4K макро/микро без спецэффектов и подкраски цвета","conf":"verified","u":"https://www.beautyofscience.com/"},{"n":"Mathieu Stern","t":"solo","c":"Париж","b":4,"d":"авторская съёмка на кастомную/винтажную оптику, боке-эксперименты","p":"образовательный контент + продажа кастомных объективов (напр. 3D-печат…","s":"«weird lenses»: советская, проекционная, самодельная оптика; экстремальное swirly-боке, св…","conf":"verified","u":"https://www.mathieustern.com/"},{"n":"Fabian Oefner","t":"solo","c":"Аарау (студия) / Коннектик…","b":4,"d":"фото/видеоарт: высокоскоростная фиксация света и физических явлений","p":"арт-рынок: галерейные принты ~$2k–$30k+ (M.A.D. Gallery, Artsy)","s":"феррожидкости, масляные плёнки, краска в движении, застывшая в идеальный момент; иридесцен…","conf":"verified","u":"https://fabianoefner.com/"},{"n":"Linden Gledhill","t":"solo","c":"Филадельфия","b":4,"d":"макро/микроскопная фотография и авторская съёмка света","p":"лицензирование/принты и бренд-коллаборации; ставки не публикуются","s":"макро и микроскопия, высокоскоростная фиксация; манипуляция светом на мыле, красителях, кр…","conf":"verified","u":"https://www.lindengledhill.com/"},{"n":"Daniel Mercadante","t":"solo","c":"Нью-Йорк / Новая Англия","b":4,"d":"видеоарт/режиссура + световая живопись (long-exposure light painting)","p":"коммерческая режиссура (Park Pictures) проект десятки–сотни тыс. $; ар…","s":"длинная выдержка и цветные световые «ленты» в пейзаже; абстракция света, синестезия цвета","conf":"verified","u":"https://www.danielmercadante.com/"},{"n":"Steve Giralt (The Garage)","t":"studio","c":"Нью-Йорк (Бруклин)","b":4,"d":"высокоскоростная макро-кинематография, кастомные риги/робо-моушн, свет","p":"хай-энд рекламный продакшн: проект ~$50k–$500k+","s":"тейбл-топ и макро-сторителлинг на 1000 fps, свет и жидкости, motion-control роботы, virtua…","conf":"verified","u":"https://www.stevegiralt.com/"},{"n":"Semiconductor (Ruth Jarman \u0026 Joe Gerhardt)","t":"collective","c":"Брайтон","b":4,"d":"видеоарт: наука, свет и материя как движущееся изображение","p":"музейные/институциональные комиссии, гранты, продажа тиражей — ставки…","s":"абстрактная визуализация природных сил, времени и масштаба; сочетание съёмки, данных и ани…","conf":"verified","u":"https://semiconductorfilms.com/"},{"n":"Ruslan (Rus) Khasanov","t":"solo","c":"Россия (родом из Перми)","b":3,"d":"видеоарт / макро жидкостей, «жидкая типографика», абстракция света и цвета","p":"коммишн digital-арт для брендов: проект ~$5k–$50k+ (оценка)","s":"чернила, масло, вода в макро; «жидкие портреты» и каллиграфия, переливы света, синергия ар…","conf":"verified","u":"https://ruskhasanov.com/"},{"n":"Vadim Sherbakov","t":"solo","c":"Москва","b":2,"d":"макро-кинематография (чернила, жидкости, химия) / авторская съёмка","p":"лицензирование футажа и коммишн; продажа пресетов/LUT; ставки не публи…","s":"макро-«миры»: чернила и жидкости выглядят как планеты/микрокосмос; высокая детализация, чи…","conf":"verified","u":"https://www.vadim.video/macro-films"},{"n":"Alexey Kljatov (ChaoticMind75)","t":"solo","c":"Москва","b":2,"d":"авторская макро-съёмка на кастомную (советскую) оптику — преим. фото","p":"лицензирование/принты — недорогой сегмент (оценка)","s":"макро снежинок и кристаллов на самодельном риге: Helios 44M-5 (Зенит), реверс-объектив как…","conf":"verified","u":"https://www.behance.net/ChaoticMind75"}]</script>
 <script>
 (function(){
   "use strict";
-  var DATA=[];
-  try{ DATA=JSON.parse(document.getElementById('data').textContent||'[]'); }catch(e){ DATA=[]; }
-  var REG={1:'СПб',2:'Москва',3:'Регионы РФ',4:'Мир'};
-
-  // KPIs
+  if(!document.documentElement.getAttribute('data-theme')){document.documentElement.setAttribute('data-theme','dark');}
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DATA=[]; try{ DATA=JSON.parse(document.getElementById('data').textContent||'[]'); }catch(e){ DATA=[]; }
   var byId=function(id){return document.getElementById(id);};
-  byId('kpiTotal').textContent=DATA.length;
-  byId('kpiVer').textContent=DATA.filter(function(d){return d.conf==='verified';}).length;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
-  // Charts
-  function barChart(el,pairs,cls){
-    var max=Math.max.apply(null,pairs.map(function(p){return p[1];}))||1, h='';
-    pairs.forEach(function(p){
-      var w=Math.round(p[1]/max*100);
-      h+='<div class="bar-row"><span class="bl" title="'+p[0]+'">'+p[0]+'</span>'+
-         '<span class="bar-track"><span class="bar-fill '+(p[2]||cls||'')+'" style="width:'+w+'%"></span></span>'+
-         '<span class="bv">'+p[1]+'</span></div>';
-    });
+  // ---- reveal on scroll ----
+  if(!reduce && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+
+  // ---- count-up ----
+  function countUp(el){
+    var to=parseInt(el.getAttribute('data-to'),10)||0;
+    if(reduce){ el.textContent=to; return; }
+    var start=null, dur=1100;
+    function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); var e=1-Math.pow(1-p,3); el.textContent=Math.round(e*to); if(p<1)requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var counted=false;
+  function tryCount(){ if(counted)return; var b=document.querySelector('.bento'); if(!b)return; var r=b.getBoundingClientRect(); if(r.top<innerHeight&&r.bottom>0){ counted=true; document.querySelectorAll('.num').forEach(countUp); } }
+  addEventListener('scroll',tryCount,{passive:true}); tryCount();
+
+  // ---- charts ----
+  function countBy(k,v){return DATA.filter(function(d){return String(d[k])===String(v);}).length;}
+  function barChart(el,pairs){
+    var max=Math.max.apply(null,pairs.map(function(p){return p[1];}))||1,h='';
+    pairs.forEach(function(p){ h+='<div class="bar-row"><span class="bl" title="'+esc(p[0])+'">'+esc(p[0])+'</span><span class="bar-track"><span class="bar-fill '+(p[2]||'')+'" data-w="'+Math.round(p[1]/max*100)+'"></span></span><span class="bv">'+p[1]+'</span></div>'; });
     el.innerHTML=h;
   }
-  function countBy(key,val){return DATA.filter(function(d){return String(d[key])===String(val);}).length;}
   barChart(byId('chartRegion'),[['СПб',countBy('b',1)],['Москва',countBy('b',2)],['Регионы РФ',countBy('b',3)],['Мир',countBy('b',4)]]);
   barChart(byId('chartType'),[['Студии',countBy('t','studio')],['Соло',countBy('t','solo')],['Коллективы',countBy('t','collective')],['Агрегаторы',DATA.length-countBy('t','studio')-countBy('t','solo')-countBy('t','collective')]]);
   barChart(byId('chartConf'),[['verified',countBy('conf','verified'),'g'],['likely',countBy('conf','likely'),'w'],['unverified',countBy('conf','unverified'),'b']]);
+  var chartsAnimated=false;
+  function animateBars(){ if(chartsAnimated)return; var c=document.querySelector('.charts'); if(!c)return; var r=c.getBoundingClientRect(); if(r.top<innerHeight-40){ chartsAnimated=true; document.querySelectorAll('.bar-fill').forEach(function(f){ f.style.width=(reduce?f.getAttribute('data-w'):f.getAttribute('data-w'))+'%'; }); } }
+  addEventListener('scroll',animateBars,{passive:true}); animateBars();
 
-  // Table + filters + sort
-  var tbody=byId('tbody'), rowCount=byId('rowCount');
-  var fRegion=byId('fRegion'), fType=byId('fType'), fConf=byId('fConf'), fSearch=byId('fSearch');
-  var sortKey='t', sortDir=1;
-  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  function linkCell(u){ if(!u) return '<span class="muted">—</span>'; var href=/^https?:\/\//.test(u)?u:'https://'+u; return '<a class="ext" href="'+esc(href)+'" target="_blank" rel="noopener">открыть ↗</a>'; }
+  // ---- table ----
+  var tbody=byId('tbody'),rowCount=byId('rowCount'),REG={1:'СПб',2:'Москва',3:'Регионы РФ',4:'Мир'};
+  var fRegion=byId('fRegion'),fType=byId('fType'),fConf=byId('fConf'),fSearch=byId('fSearch');
+  var sortKey='t',sortDir=1;
+  function linkCell(u){ if(!u)return '<span class="muted">—</span>'; var href=/^https?:\/\//.test(u)?u:'https://'+u; return '<a class="ext" href="'+esc(href)+'" target="_blank" rel="noopener">открыть ↗</a>'; }
   function render(){
-    var reg=fRegion.value, ty=fType.value, cf=fConf.value, q=fSearch.value.trim().toLowerCase();
+    var reg=fRegion.value,ty=fType.value,cf=fConf.value,q=fSearch.value.trim().toLowerCase();
     var rows=DATA.filter(function(d){
-      if(reg && String(d.b)!==reg) return false;
-      if(ty && d.t!==ty) return false;
-      if(cf && d.conf!==cf) return false;
-      if(q){ var hay=((d.n||'')+' '+(d.d||'')+' '+(d.s||'')+' '+(d.c||'')).toLowerCase(); if(hay.indexOf(q)<0) return false; }
+      if(reg&&String(d.b)!==reg)return false;
+      if(ty&&d.t!==ty)return false;
+      if(cf&&d.conf!==cf)return false;
+      if(q){var hay=((d.n||'')+' '+(d.d||'')+' '+(d.s||'')+' '+(d.c||'')).toLowerCase(); if(hay.indexOf(q)<0)return false;}
       return true;
     });
-    rows.sort(function(a,b){
-      var x=(a[sortKey]||'').toString().toLowerCase(), y=(b[sortKey]||'').toString().toLowerCase();
-      return x<y?-sortDir:x>y?sortDir:0;
-    });
+    rows.sort(function(a,b){var x=(a[sortKey]||'').toString().toLowerCase(),y=(b[sortKey]||'').toString().toLowerCase();return x<y?-sortDir:x>y?sortDir:0;});
     var h='';
     rows.forEach(function(d){
-      var t=d.t||''; var pillCls=(t==='studio'||t==='solo'||t==='collective')?t:'collective';
+      var t=d.t||'',pc=(t==='studio'||t==='solo'||t==='collective')?t:'collective';
       var tl=t==='studio'?'студия':t==='solo'?'соло':t==='collective'?'коллектив':esc(t);
-      h+='<tr><td class="nm">'+esc(d.n)+'</td>'+
-         '<td><span class="pill '+pillCls+'">'+tl+'</span></td>'+
-         '<td>'+esc(d.c||REG[d.b]||'')+'</td>'+
-         '<td class="dir">'+esc(d.d)+'</td>'+
-         '<td class="pr">'+esc(d.p||'—')+'</td>'+
-         '<td><span class="cf '+esc(d.conf)+'">'+esc(d.conf)+'</span></td>'+
-         '<td>'+linkCell(d.u)+'</td></tr>';
+      h+='<tr><td class="nm">'+esc(d.n)+'</td><td><span class="pill '+pc+'">'+tl+'</span></td><td>'+esc(d.c||REG[d.b]||'')+'</td><td class="dir">'+esc(d.d)+'</td><td class="pr">'+esc(d.p||'—')+'</td><td><span class="cf '+esc(d.conf)+'">'+esc(d.conf)+'</span></td><td>'+linkCell(d.u)+'</td></tr>';
     });
     tbody.innerHTML=h||'<tr><td colspan="7" class="muted" style="padding:24px;text-align:center">Ничего не найдено — смягчите фильтры.</td></tr>';
     rowCount.textContent=rows.length+' из '+DATA.length;
   }
   [fRegion,fType,fConf].forEach(function(el){el.addEventListener('change',render);});
   fSearch.addEventListener('input',render);
-  Array.prototype.forEach.call(document.querySelectorAll('thead th[data-k]'),function(th){
-    th.addEventListener('click',function(){ var k=th.getAttribute('data-k'); if(k===sortKey){sortDir*=-1;}else{sortKey=k;sortDir=1;} render(); });
-  });
+  Array.prototype.forEach.call(document.querySelectorAll('thead th[data-k]'),function(th){th.addEventListener('click',function(){var k=th.getAttribute('data-k');if(k===sortKey){sortDir*=-1;}else{sortKey=k;sortDir=1;}render();});});
   render();
 
-  // Theme toggle
-  
-  var tb=byId('themeBtn');
-  tb.addEventListener('click',function(){
-    var cur=document.documentElement.getAttribute('data-theme');
-    var next = cur ? (cur==='dark'?'light':'dark') : (matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark');
-    document.documentElement.setAttribute('data-theme',next);
-  });
+  // ---- active nav on scroll ----
+  var navmap={};
+  document.querySelectorAll('.nav a[href^="#"]').forEach(function(a){navmap[a.getAttribute('href').slice(1)]=a;});
+  var secs=Object.keys(navmap).map(function(id){return document.getElementById(id);}).filter(Boolean);
+  if('IntersectionObserver' in window){
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ Object.values(navmap).forEach(function(a){a.classList.remove('active');}); var a=navmap[e.target.id]; if(a)a.classList.add('active'); } });},{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(s){io2.observe(s);});
+  }
+
+  // ---- theme toggle ----
+  byId('themeBtn').addEventListener('click',function(){var cur=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',cur==='dark'?'light':'dark');});
 })();
 </script>

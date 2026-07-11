@@ -1,12 +1,17 @@
 <meta charset="utf-8">
 <title>Бриф VISTVO — на проработку стратегии</title>
+<meta name="description" content="Бриф VISTVO для артиста — опросник на проработку стратегии: мультикам и видеоарт.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%235E6E3F'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23fff' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Manrope:wght@400..700&display=swap">
 <style>
   :root{
     --bg:#F3F4EF; --surface:#FFFFFF; --surface-2:#F1F2EC; --surface-3:#E9ECE1;
     --border:#DEE1D6; --border-2:#EAECE3;
     --text:#22261D; --muted:#5B6353; --faint:#8A8F80;
     --accent:#5E6E3F; --accent-2:#7E9455; --accent-soft:rgba(126,148,85,.14);
-    --good:#3E8E5E; --good-bg:rgba(62,142,94,.12);
+    --good:#3E8E5E; --good-bg:rgba(62,142,94,.12); --font-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif; --font-body:"Manrope",-apple-system,"Segoe UI",system-ui,sans-serif;
     --shadow:0 1px 2px rgba(34,38,29,.05),0 10px 30px rgba(34,38,29,.06);
   }
   :root[data-theme="dark"]{
@@ -20,7 +25,7 @@
   *{box-sizing:border-box}
   @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
   body{margin:0;background:var(--bg);color:var(--text);
-    font-family:-apple-system,"Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+    font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;}
   .mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;}
   .wrap{max-width:800px;margin:0 auto;padding:0 20px;}
   a{color:var(--accent);}
@@ -31,7 +36,7 @@
     text-transform:lowercase;font-size:1.5rem;color:var(--accent);}
   .mark .cam{display:inline-block;transform:translateY(2px);margin-right:.1em;}
   .sub{color:var(--muted);font-size:.9rem;margin-top:8px;letter-spacing:.02em;}
-  h1{font-size:clamp(1.6rem,4vw,2.3rem);letter-spacing:-.02em;text-align:center;margin:26px 0 10px;text-wrap:balance;}
+  h1{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.3rem);letter-spacing:-.02em;text-align:center;margin:26px 0 10px;text-wrap:balance;}
   .intro{color:var(--muted);text-align:center;max-width:60ch;margin:0 auto 8px;}
   .meta-line{text-align:center;color:var(--faint);font-size:.82rem;margin-bottom:26px;}
 
@@ -51,7 +56,7 @@
   .progress .lbl{font-size:.78rem;color:var(--muted);margin-top:6px;font-family:ui-monospace,Consolas,monospace;}
 
   section.sec{margin:30px 0;}
-  .sec-h{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:0 0 4px;color:var(--accent);}
+  .sec-h{font-family:var(--font-display);font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:0 0 4px;color:var(--accent);}
   .sec-line{height:1px;background:var(--border);margin:12px 0 20px;}
 
   .q{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 18px 16px;margin-bottom:14px;}

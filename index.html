@@ -1,5 +1,17 @@
 <meta charset="utf-8">
 <title>VISTVO — панель проекта</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="VISTVO — авторская мультикамерная съёмка концертов (РФ) и художественный видеоарт (мир). Панель проекта: стратегия, рынок из 178 студий, воронки.">
+<meta name="theme-color" content="#0B0C10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VISTVO">
+<meta property="og:title" content="VISTVO — авторская концертная съёмка и видеоарт">
+<meta property="og:description" content="Мультикам-съёмка концертов и художественный видеоарт. Панель проекта: стратегия, рынок, воронки.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0C10'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23EBB24E' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&display=swap">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"VISTVO","description":"Авторская мультикамерная съёмка концертов и художественный видеоарт","url":"https://ychkydyk.github.io/vistvo-site/","areaServed":["RU","Worldwide"],"knowsAbout":["концертная видеосъёмка","мультикамерный продакшн","видеоарт"]}</script>
 <style>
   :root{
     --bg:#0B0C10; --bg-2:#0E1015; --panel:#14161D; --panel-2:#191C24;
@@ -12,6 +24,8 @@
     --good-bg:rgba(103,200,140,.14); --warn-bg:rgba(216,184,90,.14); --bad-bg:rgba(224,119,108,.14);
     --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 20px 50px -24px rgba(0,0,0,.7);
     --radius:18px;
+    --font-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+    --font-body:"Manrope",-apple-system,"Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
   }
   :root[data-theme="light"]{
     --bg:#EDEEE9; --bg-2:#F3F3EE; --panel:#FFFFFF; --panel-2:#F6F6F1;
@@ -28,7 +42,7 @@
   html{scroll-behavior:smooth}
   body{
     margin:0;color:var(--text);background:var(--bg);
-    font-family:-apple-system,"Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
+    font-family:var(--font-body);
     font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
   /* ambient stage glows */
@@ -71,11 +85,11 @@
   @media(max-width:860px){.tagline,.nav{display:none}}
 
   /* hero */
-  .hero{padding:70px 0 40px;position:relative}
+  .hero{padding:84px 0 48px;position:relative}
   .eyebrow{font-family:ui-monospace,Consolas,monospace;text-transform:uppercase;letter-spacing:.24em;
     font-size:.72rem;color:var(--accent);margin:0 0 18px;display:flex;align-items:center;gap:10px}
   .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);display:inline-block}
-  h1{font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.03em;font-weight:800;
+  h1{font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.03em;font-weight:800;font-family:var(--font-display);
     margin:0 0 20px;text-wrap:balance;max-width:16ch}
   h1 .g{background:linear-gradient(120deg,var(--accent-2),var(--accent) 45%,var(--sage));
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -89,6 +103,7 @@
   .btn.primary:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 16px 40px -12px rgba(235,178,78,.4)}
   .btn.ghost{background:var(--glass);border-color:var(--border);color:var(--text)}
   .btn.ghost:hover{border-color:var(--hair);text-decoration:none;transform:translateY(-2px)}
+  .btn:active{transform:scale(.985)}
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
   .chip{font-size:.76rem;padding:6px 13px;border-radius:100px;border:1px solid var(--border);
     background:var(--glass-2);color:var(--muted)}
@@ -111,11 +126,11 @@
   @media(max-width:560px){.bento{grid-template-columns:repeat(2,1fr)}.tile.big,.tile.wide{grid-column:span 2}}
 
   /* sections */
-  section.blk{padding:64px 0;position:relative}
+  section.blk{padding:80px 0;position:relative}
   .blk + .blk{border-top:1px solid var(--border-2)}
   .s-head{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;flex-wrap:wrap}
   .s-num{font-family:ui-monospace,Consolas,monospace;color:var(--accent);font-size:.8rem;opacity:.8}
-  h2{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:750;letter-spacing:-.02em;margin:0;text-wrap:balance;font-weight:700}
+  h2{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin:0;text-wrap:balance;font-family:var(--font-display)}
   .s-desc{color:var(--muted);max-width:72ch;margin:8px 0 32px}
   .s-desc .mono{color:var(--text)}
 
@@ -197,7 +212,7 @@
   /* manifest */
   .manifest{background:linear-gradient(160deg,var(--glass),transparent);border:1px solid var(--border);border-radius:24px;padding:40px;position:relative;overflow:hidden}
   .manifest::after{content:"“";position:absolute;top:-40px;right:14px;font-size:13rem;line-height:1;color:var(--accent-soft);font-family:Georgia,serif;pointer-events:none}
-  .m-quote{font-size:clamp(1.1rem,2.1vw,1.42rem);line-height:1.55;max-width:60ch;font-weight:500;letter-spacing:-.01em}
+  .m-quote{font-family:var(--font-display);font-size:clamp(1.1rem,2.1vw,1.42rem);line-height:1.55;max-width:60ch;font-weight:500;letter-spacing:-.01em}
   .m-quote em{color:var(--accent);font-style:normal}
   .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:30px}
   .pillar{border-top:2px solid var(--accent);padding-top:11px}
